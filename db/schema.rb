@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160718161749) do
+ActiveRecord::Schema.define(version: 20160718192541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,37 @@ ActiveRecord::Schema.define(version: 20160718161749) do
     t.index ["user_id"], name: "index_friendships_on_user_id", using: :btree
   end
 
+  create_table "holidays", force: :cascade do |t|
+    t.string   "name"
+    t.string   "season"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "interests", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_holidays", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "holiday_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["holiday_id"], name: "index_user_holidays_on_holiday_id", using: :btree
+    t.index ["user_id"], name: "index_user_holidays_on_user_id", using: :btree
+  end
+
+  create_table "user_interests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "interest_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["interest_id"], name: "index_user_interests_on_interest_id", using: :btree
+    t.index ["user_id"], name: "index_user_interests_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -48,6 +79,15 @@ ActiveRecord::Schema.define(version: 20160718161749) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "wishlists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "friends", "users"
   add_foreign_key "friendships", "users"
+  add_foreign_key "user_holidays", "holidays"
+  add_foreign_key "user_holidays", "users"
+  add_foreign_key "user_interests", "interests"
+  add_foreign_key "user_interests", "users"
 end

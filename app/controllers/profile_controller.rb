@@ -1,9 +1,14 @@
 class ProfileController < ApplicationController
 
-  def show
-    @info = User.first
+  def profile
+    user = current_user
+    @info = user
   end
 
-  
+  def test
+    binding.pry
+  end
+
+
 
 end
