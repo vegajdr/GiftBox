@@ -6,7 +6,13 @@ class ProfileController < ApplicationController
   end
 
   def test
-    binding.pry
+    @user = current_user
+    if @user
+      render 'test.json.jbuilder', status: :ok
+    else
+      render json: { status: 'Not Authorized'}
+    end
+
   end
 
 
