@@ -5,14 +5,22 @@ class ProfileController < ApplicationController
     @info = user
   end
 
-  def test
+  # def test
+  #   @user = current_user
+  #   if @user
+  #     render 'test.json.jbuilder', status: :ok
+  #   else
+  #     render json: { status: 'Not Authorized'}
+  #   end
+  # end
+
+  def login
     @user = current_user
     if @user
       render 'test.json.jbuilder', status: :ok
     else
       render json: { status: 'Not Authorized'}
     end
-
   end
 
 

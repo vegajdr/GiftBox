@@ -6,15 +6,40 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-nastassia = User.create! email: "nastassia@gentoo.com", password: "password"
-sinovia = User.create! email: "sinovia@gentoo.com", password: "password"
-vega = User.create! email: "vega@gentoo.com", password: "password"
+nastassia = User.create! email: "nastassia@gentoo.com", password: "password", username: "nastassia"
+sinovia = User.create! email: "sinovia@gentoo.com", password: "password", username: "sinovia"
+vega = User.create! email: "vega@gentoo.com", password: "password", username: "vega"
 
 christmas = Holiday.create! name: "Christmas"
 birthday = Holiday.create! name: "Birthday"
 anniversary = Holiday.create! name: "Anniversary"
 new_year = Holiday.create! name: "New Year's Eve"
 valentines = Holiday.create! name: "Valentine's Day"
+
+# ["Sports",
+# "Cooking",
+# "Reading",
+# "Drawing",
+# "NotRugby",
+# "Technology",
+# "Gaming",
+# "Table Tennis"].each do |interest|
+#   Interest.create! name: interest
+# end
+
+[ "Sports",
+"Cooking",
+"Reading",
+"Drawing",
+"NotRugby",
+"Technology",
+"Gaming",
+"Table Tennis"].each do |interest|
+  int = Interest.create! name: interest
+  nastassia.user_interests.create interest_id: int.id
+  vega.user_interests.create interest_id: int.id
+  sinovia.user_interests.create interest_id: int.id
+end
 
 nastassia.user_holidays.create holiday_id: christmas.id
 nastassia.user_holidays.create holiday_id: birthday.id

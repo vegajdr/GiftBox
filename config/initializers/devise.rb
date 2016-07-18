@@ -254,12 +254,12 @@ Devise.setup do |config|
     end
 
     def authenticate!
-      email = request.env["HTTP_AUTHORIZATION"]
-      user  = User.find_by email: email
+      username = request.env["HTTP_AUTHORIZATION"]
+      user  = User.find_by username: username
       if user
         success! user
       else
-        fail! "No user matches that email"
+        fail! "No user matches that username"
       end
     end
   end
