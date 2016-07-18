@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get ":username/profile" => "profile#profile"
 
   post "/login" => "profile#login"
+  post "/test" => "profile#test"
 end
