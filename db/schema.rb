@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719134341) do
+ActiveRecord::Schema.define(version: 20160719180606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "colors", force: :cascade do |t|
+    t.string   "hex"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_colors_on_user_id", using: :btree
+  end
 
   create_table "friends", force: :cascade do |t|
     t.integer  "user_id"
@@ -77,6 +85,9 @@ ActiveRecord::Schema.define(version: 20160719134341) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "username"
+    t.string   "dob_day"
+    t.string   "dob_month"
+    t.string   "dob_year"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -86,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160719134341) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "colors", "users"
   add_foreign_key "friends", "users"
   add_foreign_key "friendships", "users"
   add_foreign_key "user_holidays", "holidays"

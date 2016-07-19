@@ -4,14 +4,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates_uniqueness_of :username
+
   has_many :accepted_friendships, -> { where status: 'accepted' }, class_name: "Friendship"
   has_many :pending_friendships, -> { where status: 'pending' }, class_name: "Friendship"
   has_many :friends, through: :accepted_friendships, foreign_key: "friend_id"
-
 
   has_many :user_holidays
   has_many :holidays, through: :user_holidays
 
   has_many :user_interests
   has_many :interests, through: :user_interests
+
+  has_many :colors
 end

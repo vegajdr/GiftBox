@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get ":username/profile" => "profile#profile"
+  get ":username/profile" => "profiles#profile"
 
-  post "/login" => "profile#login"
-  post "/test" => "profile#test"
+  post "/login" => "profiles#login"
+  post "/test" => "profiles#test"
 end
