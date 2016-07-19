@@ -2,7 +2,9 @@ json.user do
   json.email @user.email
   json.username @user.username
   json.friends @user.friends, :username
-  json.holidays @user.holidays, :name
+  json.holidays do
+    json.array! @user.holidays
+  end
   json.interests @user.interests, :name
   json.birthday do
     json.month @user.dob_month

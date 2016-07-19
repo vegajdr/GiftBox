@@ -22,6 +22,10 @@ class ProfilesController < ApplicationController
     #create Profile page
   end
 
+  def test
+
+  end
+
 
 
 end
