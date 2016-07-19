@@ -4,7 +4,7 @@ class ProfileController < ApplicationController
     user = current_user
     @info = user
   end
-
+# TODO This needs to be removed before final day
   def test
     @user = current_user
     if @user

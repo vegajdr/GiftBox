@@ -10,28 +10,24 @@ nastassia = User.create! email: "nastassia@gentoo.com", password: "password", us
 sinovia = User.create! email: "sinovia@gentoo.com", password: "password", username: "sinovia"
 vega = User.create! email: "vega@gentoo.com", password: "password", username: "vega"
 
-christmas = Holiday.create! name: "Christmas"
-birthday = Holiday.create! name: "Birthday"
-anniversary = Holiday.create! name: "Anniversary"
-new_year = Holiday.create! name: "New Year's Eve"
-valentines = Holiday.create! name: "Valentine's Day"
+nastassia.friendships.create! friend_id: sinovia.id
 
-# ["Sports",
-# "Cooking",
-# "Reading",
-# "Drawing",
-# "NotRugby",
-# "Technology",
-# "Gaming",
-# "Table Tennis"].each do |interest|
-#   Interest.create! name: interest
-# end
+["Christmas",
+"Birthday",
+"Anniversary",
+"New Year's",
+"Valentine's Day"].each do |holiday|
+  hol = Holiday.create! name: holiday
+  nastassia.user_holidays.create holiday_id: hol.id
+  vega.user_holidays.create holiday_id: hol.id
+  sinovia.user_holidays.create holiday_id: hol.id
+end
+
 
 [ "Sports",
 "Cooking",
 "Reading",
 "Drawing",
-"NotRugby",
 "Technology",
 "Gaming",
 "Table Tennis"].each do |interest|
@@ -40,21 +36,3 @@ valentines = Holiday.create! name: "Valentine's Day"
   vega.user_interests.create interest_id: int.id
   sinovia.user_interests.create interest_id: int.id
 end
-
-nastassia.user_holidays.create holiday_id: christmas.id
-nastassia.user_holidays.create holiday_id: birthday.id
-nastassia.user_holidays.create holiday_id: anniversary.id
-nastassia.user_holidays.create holiday_id: new_year.id
-nastassia.user_holidays.create holiday_id: valentines.id
-
-sinovia.user_holidays.create holiday_id: christmas.id
-sinovia.user_holidays.create holiday_id: birthday.id
-sinovia.user_holidays.create holiday_id: anniversary.id
-sinovia.user_holidays.create holiday_id: new_year.id
-sinovia.user_holidays.create holiday_id: valentines.id
-
-vega.user_holidays.create holiday_id: christmas.id
-vega.user_holidays.create holiday_id: birthday.id
-vega.user_holidays.create holiday_id: anniversary.id
-vega.user_holidays.create holiday_id: new_year.id
-vega.user_holidays.create holiday_id: valentines.id
