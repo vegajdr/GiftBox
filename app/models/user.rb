@@ -6,8 +6,10 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :username
 
-  has_many :accepted_friendships, -> { where status: 'accepted' }, class_name: "Friendship"
+  has_many :accepted_friendships, -> { where status: 'accepted'}, class_name: "Friendship"
   has_many :pending_friendships, -> { where status: 'pending' }, class_name: "Friendship"
+  has_many :requested_friendships, -> { where status: 'requested' }, class_name: "Friendship"
+
   has_many :friends, through: :accepted_friendships, foreign_key: "friend_id"
 
   has_many :user_holidays

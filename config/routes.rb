@@ -3,7 +3,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get ":username/profile" => "profiles#profile"
+  post ":username/profile" => "profiles#create"
 
   post "/login" => "profiles#login"
   post "/test" => "profiles#test"
+
+  scope path: ":username" do
+    resources :friendships, path: :friends
+  end
+
+  post ":username/friends/approve" => "friendships#accept"
 end
