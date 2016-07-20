@@ -14,6 +14,7 @@ vega = User.create! first_name: "Vega", last_name: "Ramirez", email: "vega@gento
 
 nastassia.accepted_friendships.create! friend_id: sinovia.id
 
+# Holidays
 ["Christmas",
 "Birthday",
 "Anniversary",
@@ -25,7 +26,7 @@ nastassia.accepted_friendships.create! friend_id: sinovia.id
   sinovia.user_holidays.create holiday_id: hol.id
 end
 
-
+# Interests
 [ "Sports",
 "Cooking",
 "Reading",
@@ -37,4 +38,19 @@ end
   nastassia.user_interests.create interest_id: int.id
   vega.user_interests.create interest_id: int.id
   sinovia.user_interests.create interest_id: int.id
+end
+
+# Colors
+[ "White",
+"Blue",
+"Red",
+"Yellow",
+"Orange",
+"Pink",
+"Black",
+"Green",
+"Brown"].each do |color|
+  nastassia.colors.create! name: color
+  vega.colors.create! name: color
+  sinovia.colors.create! name: color
 end
