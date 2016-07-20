@@ -1,10 +1,12 @@
 class FriendshipsController < ApplicationController
+  before_action :json_format
 
   def index
     @user = search_user
   end
 
   def create
+    binding.pry
     user = current_user
     friend = User.find_by username: params[:requested_friend]
     Friendship.request user, friend
@@ -26,4 +28,8 @@ class FriendshipsController < ApplicationController
     def search_user
       User.find_by username: params[:username]
     end
+
+    # def json_format
+    #   request.format = :json
+    # end
 end

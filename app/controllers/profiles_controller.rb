@@ -48,9 +48,9 @@ class ProfilesController < ApplicationController
 
   private
 
-    def json_format
-      request.format = :json
-    end
+    # def json_format
+    #   request.format = :json
+    # end
 
     def allowed_params
       params.permit(:first_name, :last_name, :dob_day, :dob_month, :dob_year)
