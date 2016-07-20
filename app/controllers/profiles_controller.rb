@@ -1,11 +1,12 @@
 class ProfilesController < ApplicationController
-  before_filter :json_format
+  before_action :json_format
 
   # skip_before_action :verify_authenticity_token
   skip_before_action :authenticate_user!, only: [:login, :profile]
 
 
   def show
+    # TODO Respond according to authentication
     @accepted_friend = current_user.friends.include? search_user
     # @friendship_status = friendship_accepted?
     @user = search_user
@@ -17,7 +18,14 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    # TODO This needs to be worked on
+    # TODO Add response
+    user = current_user
+    user.update allowed_params
+    #create Profile page
+  end
+
+  def update
+    # TODO Add response
     user = current_user
     user.update allowed_params
     #create Profile page

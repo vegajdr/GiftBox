@@ -1,5 +1,9 @@
 class FriendshipsController < ApplicationController
 
+  def index
+    @user = search_user
+  end
+
   def create
     user = current_user
     friend = User.find_by username: params[:requested_friend]
@@ -17,5 +21,9 @@ class FriendshipsController < ApplicationController
 
     def approved_params
       params.permit :requested_friend, :accepted_friend
+    end
+
+    def search_user
+      User.find_by username: params[:username]
     end
 end
