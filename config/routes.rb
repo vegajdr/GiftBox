@@ -8,4 +8,9 @@ Rails.application.routes.draw do
   post "/login" => "profiles#login"
   post "/test" => "profiles#test"
 
+  scope path: ":username" do
+    resources :friendships, path: :friends
+  end
+
+  post ":username/friends/approve" => "friendships#accept"
 end

@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
   before_filter :json_format
 
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
   skip_before_action :authenticate_user!, only: [:login, :profile]
 
 
@@ -14,6 +14,14 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def create
+    # TODO This needs to be worked on
+    user = current_user
+    user.update allowed_params
+    #create Profile page
+  end
+
+
   def login
     @user = current_user
     if @user
@@ -23,13 +31,9 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def create
-    binding.pry
-    #create Profile page
-  end
 
   def test
-
+    binding.pry
   end
 
   private
@@ -38,5 +42,7 @@ class ProfilesController < ApplicationController
       request.format = :json
     end
 
-
+    def allowed_params
+      params.permit(:first_name, :last_name, :dob_day, :dob_month, :dob_year)
+    end
 end
