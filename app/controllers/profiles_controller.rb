@@ -5,13 +5,15 @@ class ProfilesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:login, :profile]
 
 
-  def profile
-    @user = User.find_by username: params[:username]
-    if @user == current_user
-      render :profile, status: :ok
-    else
-      render json: { error: 'Not Authorized'}, status: :unauthorized
-    end
+  def show
+    @accepted_friend = current_user.friends.include? search_user
+    # @friendship_status = friendship_accepted?
+    @user = search_user
+    # if @user == current_user
+    #   render :profile, status: :ok
+    # else
+    #   render json: { error: 'Not Authorized'}, status: :unauthorized
+    # end
   end
 
   def create
@@ -45,4 +47,9 @@ class ProfilesController < ApplicationController
     def allowed_params
       params.permit(:first_name, :last_name, :dob_day, :dob_month, :dob_year)
     end
+
+    def search_user
+      User.find_by username: params[:username]
+    end
+
 end

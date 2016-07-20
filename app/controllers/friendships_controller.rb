@@ -9,7 +9,6 @@ class FriendshipsController < ApplicationController
   def accept
     user = current_user
     friend = User.find_by username: params[:accepted_friend]
-    binding.pry
     Friendship.accept user, friend
   end
 
