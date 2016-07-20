@@ -3,6 +3,8 @@ class FriendshipsController < ApplicationController
 
   def index
     @user = search_user
+    @pending = @user.pending_friendships.map { |f| f.friend }
+    @requested = @user.requested_friendships.map { |f| f.friend }
   end
 
   def create

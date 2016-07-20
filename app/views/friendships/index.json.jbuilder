@@ -7,9 +7,9 @@ json.user do
     json.array! @user.friends
   end
   json.pending_friendships do
-    json.array! @user.pending_friendships
+    json.array! @pending
   end
   json.requested_friendships do
-    json.array! @user.requested_friendships
+    json.array! @requested
   end
 end
