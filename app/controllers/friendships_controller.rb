@@ -6,7 +6,6 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    binding.pry
     user = current_user
     friend = User.find_by username: params[:requested_friend]
     Friendship.request user, friend
@@ -29,7 +28,4 @@ class FriendshipsController < ApplicationController
       User.find_by username: params[:username]
     end
 
-    # def json_format
-    #   request.format = :json
-    # end
 end
