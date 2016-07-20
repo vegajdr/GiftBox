@@ -16,4 +16,9 @@ class Friendship < ApplicationRecord
     end
   end
 
+  def self.accept user, friend
+    u = Friendship.where( user_id: user.id, friend_id: friend.id ).first.update status: "accepted"
+    f = Friendship.where( user_id: friend.id, friend_id: user.id ).first.update status: "accepted"
+  end
+
 end
