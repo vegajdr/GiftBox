@@ -11,9 +11,8 @@ RSpec.describe ProfilesController, type: :controller do
 
     response = JSON.parse response.body
 
-  
-    binding.pry
-
+    expect(response['user']['first_name']).to eq user.first_name
+    expect(response['user']['last_name']).to eq user.last_name
   end
 
 end
