@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     resource :profile
   end
 
-  post ":username/friends/approve" => "friendships#accept"
+  post ":username/friends/accept" => "friendships#accept"
 end
