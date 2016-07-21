@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates_uniqueness_of :username
+  validates_uniqueness_of :email
 
   has_many :accepted_friendships, -> { where status: 'accepted'}, class_name: "Friendship"
   has_many :pending_friendships, -> { where status: 'pending' }, class_name: "Friendship"

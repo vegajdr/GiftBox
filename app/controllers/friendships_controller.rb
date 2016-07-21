@@ -38,6 +38,4 @@ class FriendshipsController < ApplicationController
       User.find_by username: params[:username]
     end
 
-
-
 end

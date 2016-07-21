@@ -27,18 +27,6 @@ class ProfilesController < ApplicationController
     #create Profile page
   end
 
-
-  def login
-    @user = current_user
-    if @user
-      render json: { status: 'Valid User'}
-    else
-      render json: { error: 'Not Authorized'}, status: :unauthorized
-    end
-  end
-
-
-
   private
 
     def allowed_params

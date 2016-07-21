@@ -20,7 +20,7 @@ nastassia.accepted_friendships.create! friend_id: sinovia.id
 "Anniversary",
 "New Year's",
 "Valentine's Day"].each do |holiday|
-  hol = Holiday.create! name: holiday
+  hol = Holiday.create! name: holiday, preset?: true
   nastassia.user_holidays.create holiday_id: hol.id
   vega.user_holidays.create holiday_id: hol.id
   sinovia.user_holidays.create holiday_id: hol.id
@@ -34,7 +34,7 @@ end
 "Technology",
 "Gaming",
 "Table Tennis"].each do |interest|
-  int = Interest.create! name: interest
+  int = Interest.create! name: interest, preset?: true
   nastassia.user_interests.create interest_id: int.id
   vega.user_interests.create interest_id: int.id
   sinovia.user_interests.create interest_id: int.id
