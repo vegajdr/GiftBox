@@ -8,15 +8,23 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    user = current_user
     friend = User.find_by username: params[:requested_friend]
-    Friendship.request user, friend
+    if friend
+      Friendship.request current_user, friend
+      render json: { status: "Request has been created for #{friend.username}"}
+    else
+      user_not_found_response
+    end
   end
 
   def accept
-    user = current_user
     friend = User.find_by username: params[:accepted_friend]
-    Friendship.accept user, friend
+    if friend
+      Friendship.accept current_user, friend
+      render json: { status: "#{friend.username} has been accepted as friend"}
+    else
+      user_not_found_response
+    end
   end
 
 
@@ -29,5 +37,7 @@ class FriendshipsController < ApplicationController
     def search_user
       User.find_by username: params[:username]
     end
+
+
 
 end

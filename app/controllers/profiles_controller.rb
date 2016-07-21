@@ -6,15 +6,13 @@ class ProfilesController < ApplicationController
 
 
   def show
-    # TODO Respond according to authentication
     @accepted_friend = current_user.friends.include? search_user
-    # @friendship_status = friendship_accepted?
     @user = search_user
-    # if @user == current_user
-    #   render :profile, status: :ok
-    # else
-    #   render json: { error: 'Not Authorized'}, status: :unauthorized
-    # end
+    if @user
+      render :profile, status: :ok
+    else
+      user_not_found_response
+    end
   end
 
   def create

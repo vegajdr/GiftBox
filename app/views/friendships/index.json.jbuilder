@@ -6,9 +6,11 @@ json.user do
   json.friends do
     json.array! @user.friends
   end
+  json.pending_count @pending.count
   json.pending_friendships do
     json.array! @pending
   end
+  json.requested_count @requested.count
   json.requested_friendships do
     json.array! @requested
   end

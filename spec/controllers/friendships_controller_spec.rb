@@ -13,6 +13,7 @@ RSpec.describe FriendshipsController, type: :controller do
 
     expect(user.pending_friendships.count).to eq old_count + 1
     expect(user.pending_friendships.last.status).to eq "pending"
+    expect(friend.requested_friendships.last.status).to eq "requested"
   end
 
   it "allows users to accept friend requests" do
