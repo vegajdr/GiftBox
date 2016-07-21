@@ -19,4 +19,6 @@ class User < ApplicationRecord
   has_many :interests, through: :user_interests
 
   has_many :colors
+
+  has_many :wishlists
 end

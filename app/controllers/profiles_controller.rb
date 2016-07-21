@@ -1,21 +1,29 @@
 class ProfilesController < ApplicationController
-  before_filter :json_format
+  before_action :json_format
 
   # skip_before_action :verify_authenticity_token
-  skip_before_action :authenticate_user!, only: [:login, :profile]
+  # skip_before_action :authenticate_user!, only: [:login, :profile]
 
 
-  def profile
-    @user = User.find_by username: params[:username]
-    if @user == current_user
+  def show
+    @accepted_friend = current_user.friends.include? search_user
+    @user = search_user
+    if @user
       render :profile, status: :ok
     else
-      render json: { error: 'Not Authorized'}, status: :unauthorized
+      user_not_found_response
     end
   end
 
   def create
-    # TODO This needs to be worked on
+    # TODO Add response
+    user = current_user
+    user.update allowed_params
+    #create Profile page
+  end
+
+  def update
+    # TODO Add response
     user = current_user
     user.update allowed_params
     #create Profile page
@@ -32,17 +40,15 @@ class ProfilesController < ApplicationController
   end
 
 
-  def test
-    binding.pry
-  end
 
   private
-
-    def json_format
-      request.format = :json
-    end
 
     def allowed_params
       params.permit(:first_name, :last_name, :dob_day, :dob_month, :dob_year)
     end
+
+    def search_user
+      User.find_by username: params[:username]
+    end
+
 end
