@@ -21,4 +21,6 @@ class User < ApplicationRecord
   has_many :colors
 
   has_many :wishlists
+
+  has_many :special_days
 end

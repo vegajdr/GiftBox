@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
     @accepted_friend = current_user.friends.include? search_user
     @user = search_user
     if @user
-      render :profile, status: :ok
+      render :show, status: :ok
     else
       user_not_found_response
     end
@@ -17,15 +17,13 @@ class ProfilesController < ApplicationController
 
   def create
     # TODO Add response
-    user = current_user
-    user.update allowed_params
+    current_user.update allowed_params
     #create Profile page
   end
 
   def update
     # TODO Add response
-    user = current_user
-    user.update allowed_params
+    current_user.update allowed_params
     #create Profile page
   end
 

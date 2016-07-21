@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resource :profile do
       post :dates
       resources :interests
+      resources :holidays
     end
   end
 
