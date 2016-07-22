@@ -14,13 +14,19 @@ vega = User.create! first_name: "Vega", last_name: "Ramirez", email: "vega@gento
 
 nastassia.accepted_friendships.create! friend_id: sinovia.id
 
+User.all.each do |user|
+  w = user.wishlists.create! name: "Test"
+  w.items.create! name: "Toy"
+
+end
+
 # Holidays
 ["Christmas",
 "Birthday",
 "Anniversary",
 "New Year's",
 "Valentine's Day"].each do |holiday|
-  hol = Holiday.create! name: holiday
+  hol = Holiday.create! name: holiday, preset?: true
   nastassia.user_holidays.create holiday_id: hol.id
   vega.user_holidays.create holiday_id: hol.id
   sinovia.user_holidays.create holiday_id: hol.id
@@ -34,7 +40,7 @@ end
 "Technology",
 "Gaming",
 "Table Tennis"].each do |interest|
-  int = Interest.create! name: interest
+  int = Interest.create! name: interest, preset?: true
   nastassia.user_interests.create interest_id: int.id
   vega.user_interests.create interest_id: int.id
   sinovia.user_interests.create interest_id: int.id

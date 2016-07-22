@@ -4,15 +4,15 @@ class Friendship < ApplicationRecord
 
 
   def self.request user, friend
-    unless Friendship.where(user_id: user.id, friend_id: friend.id).exists?
+    unless Friendship.where( user: user, friend: friend ).exists?
       Friendship.create! user: user, friend: friend, status: 'pending'
       Friendship.create! user: friend, friend: user, status: 'requested'
     end
   end
 
   def self.accept user, friend
-    u = Friendship.where( user_id: user.id, friend_id: friend.id ).first.update status: "accepted"
-    f = Friendship.where( user_id: friend.id, friend_id: user.id ).first.update status: "accepted"
+    Friendship.where( user: user, friend: friend ).first.update status: "accepted"
+    Friendship.where( user: friend, friend: user ).first.update status: "accepted"
   end
 
 end
