@@ -32,4 +32,18 @@ RSpec.describe FriendshipsController, type: :controller do
     expect(user.friends.count).to eq old_friend_count + 1
     expect(user.friends).to include friend
   end
+
+  it "allows users to remove friends" do
+    user = create :user
+    sign_in user
+    friend = create :user
+
+    Friendship.request user, friend
+    Friendship.accept user, friend
+    old_friends_count = user.friends.count
+
+    response = delete :destroy, removed_friend: friend.username, username: user.username
+
+    expect(user.friends.count).to eq old_friends_count - 1
+  end
 end
