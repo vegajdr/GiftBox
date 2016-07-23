@@ -4,11 +4,13 @@ Rails.application.routes.draw do
 
   # post "/login" => "profiles#login"
   # post "/test" => "profiles#test"
+  get '/users' => 'users#index'
 
   scope path: ":username" do
-    resources :friendships, path: :friends do
+    resource :friendships, path: :friends do
       collection do
         post :accept
+        delete :unfriend
       end
     end
     resource :profile do

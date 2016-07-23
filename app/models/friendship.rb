@@ -15,4 +15,9 @@ class Friendship < ApplicationRecord
     Friendship.where( user: friend, friend: user ).first.update status: "accepted"
   end
 
+  def self.remove_friend user, friend
+    Friendship.where( user: user, friend: friend ).first.delete
+    Friendship.where( user: friend, friend: user ).first.delete
+  end
+
 end
