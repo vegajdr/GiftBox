@@ -1,5 +1,9 @@
 class WishlistsController < ApplicationController
 
+  def index
+    @wishlists = current_user.wishlists
+  end
+
   def create
     current_user.wishlists.create! name: params[:name]
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722174708) do
+ActiveRecord::Schema.define(version: 20160723205450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 20160722174708) do
     t.integer  "user_holiday_id"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "product_url"
+    t.string   "image_url"
     t.index ["user_holiday_id"], name: "index_items_on_user_holiday_id", using: :btree
     t.index ["user_interest_id"], name: "index_items_on_user_interest_id", using: :btree
     t.index ["wishlist_id"], name: "index_items_on_wishlist_id", using: :btree

@@ -12,79 +12,22 @@ schemes:
 basePath: /:username
 consumes:
   - application/x-www-form-urlencoded
+  - application/json
 produces:
   - application/json
 
 paths:
 
-  /fares:
-    get:
-      summary: This is where the magic happens
-      description: |
-        FareFairy works with the Rider app to call the APIs of Uber, Lyft, Taxi Fare Finder and Google Transit
-        to return several transportation options to the user. FareFairy first translates the addresses into
-        latitude and longitude through Google GeoLocator. Fares is the controller that collects all this
-        information and sends it through as a single API call to Rider.
-      parameters:
-        - name: origin
-          in: query
-          description: starting address
-          required: true
-          type: string
-          format: double
-        - name: destination
-          in: query
-          description: ending address
-          required: true
-          type: string
-          format: double
-      tags:
-        - Fares
-      responses:
-        200:
-          description: An array of transportation options
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Fares'
-        400:
-          description: Bad Request
-          schema:
-            type: integer
-            items:
-              $ref: '#/definitions/Error'
-        404:
-          description: Not Found
-          schema:
-            type: integer
-            items:
-              $ref: '#/definitions/Error'
-        500:
-          description: Internal Server Error
-          schema:
-            type: integer
-            items:
-              $ref: '#/definitions/Error'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
 
   /users:
-    post:
-      summary: The API can create users
+    get:
+      summary: Obtain a list of registered Gentoo users
       description: |
-        FareFairy will work without signing in, but users are able to create accounts in order to save common locations to the database--speeding up response time.
+        Returns an array of users information
       parameters:
-        - name: email_address
-          in: query
+        - name: username
+          in: path
           description: unique email address
-          required: true
-          type: string
-          format: double
-        - name: password
-          in: query
-          description: encrypted password
           required: true
           type: string
           format: double
@@ -96,7 +39,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/UsersPost'
+              $ref: '#/definitions/UsersGet'
         400:
           description: Bad Request
           schema:
@@ -115,130 +58,78 @@ paths:
             type: integer
             items:
               $ref: '#/definitions/Error'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
 
-    patch:
-      summary: The API can update users
-      description: |
-        Users can update profiles and add favorites.
-      parameters:
-        - name: email_address
-          in: query
-          description: unique email address
-          required: true
-          type: string
-          format: double
-        - name: password
-          in: query
-          description: encrypted password
-          required: true
-          type: string
-          format: double
-        - name: token
-          in: query
-          description: token assigned by FareFairy
-          required: true
-          type: string
-          format: double
-      tags:
-        - Users
-      responses:
-        200:
-          description: An array of user objects.
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/UsersPatch'
-        400:
-          description: Bad Request
-          schema:
-            type: integer
-            items:
-              $ref: '#/definitions/Error'
-        404:
-          description: Not Found
-          schema:
-            type: integer
-            items:
-              $ref: '#/definitions/Error'
-        500:
-          description: Internal Server Error
-          schema:
-            type: integer
-            items:
-              $ref: '#/definitions/Error'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+    # patch:
+    #   summary: The API can update users
+    #   description: |
+    #     Users can update profiles and add favorites.
+    #   parameters:
+    #     - name: email_address
+    #       in: query
+    #       description: unique email address
+    #       required: true
+    #       type: string
+    #       format: double
+    #     - name: password
+    #       in: query
+    #       description: encrypted password
+    #       required: true
+    #       type: string
+    #       format: double
+    #     - name: token
+    #       in: query
+    #       description: token assigned by FareFairy
+    #       required: true
+    #       type: string
+    #       format: double
+    #   tags:
+    #     - Users
+    #   responses:
+    #     200:
+    #       description: An array of user objects.
+    #       schema:
+    #         type: array
+    #         items:
+    #           $ref: '#/definitions/UsersPatch'
+    #     400:
+    #       description: Bad Request
+    #       schema:
+    #         type: integer
+    #         items:
+    #           $ref: '#/definitions/Error'
+    #     404:
+    #       description: Not Found
+    #       schema:
+    #         type: integer
+    #         items:
+    #           $ref: '#/definitions/Error'
+    #     500:
+    #       description: Internal Server Error
+    #       schema:
+    #         type: integer
+    #         items:
+    #           $ref: '#/definitions/Error'
+    #     default:
+    #       description: Unexpected error
+    #       schema:
+    #         $ref: '#/definitions/Error'
 
-  /sessions:
+  /:username/profile/holidays:
     post:
-      summary: Users can log in
-      description: FareFairy users can create an account. The first step of this, of course, is logging in.
+      summary: Stage 1 of Profile Creation
+      description: Must provide information related to user's birthday, special days and holidays
       parameters:
-        - name: email_address
-          in: query
-          description: unique email address
+        - name: pet
+          in: body
+          description: The pet JSON you want to post
+          schema:
+            $ref: '#/definitions/Holidays'
           required: true
-          type: string
-          format: double
-        - name: password
-          in: query
-          description: encrypted password
-          required: true
-          type: string
-          format: double
       tags:
-        - Sessions
+        - Holidays
       responses:
         200:
           description: And array of user objects
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Sessions'
-        400:
-          description: Bad Request
-          schema:
-            type: integer
-            items:
-              $ref: '#/definitions/Error'
-        404:
-          description: Not Found
-          schema:
-            type: integer
-            items:
-              $ref: '#/definitions/Error'
-        500:
-          description: Internal Server Error
-          schema:
-            type: integer
-            items:
-              $ref: '#/definitions/Error'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
-
-    delete:
-      summary: Users can log out
-      description: The front-end app destroys the token when the session has ended or the user logs out.
-      parameters:
-        - name: token
-          in: query
-          description: token for validation
-          required: true
-          type: string
-          format: double
-      tags:
-        - Sessions
-      responses:
-        200:
-          description: An array of user objects
           schema:
             type: array
             items:
@@ -483,15 +374,18 @@ definitions:
         type: string
         description: The user-inputted ending address that will be fed through the four APIs
 
-  UsersPost:
+  UsersGet:
     type: object
     properties:
-      email_address:
+      username:
         type: string
-        description: Users's unique email address
-      password:
+        description: Users's unique username
+      first_name:
         type: string
-        description: Encrypted password
+        description: User's first name
+      last_name:
+        type: string
+        description: User's last name
 
   UsersPatch:
     type: object
@@ -506,7 +400,23 @@ definitions:
         type: string
         description: Token created by FareFairy to validate users
 
-  Sessions:
+  Holidays:
+    type: object
+    properties:
+      email_address:
+        type: object
+        properties:
+          something:
+            type: string
+            description: Users's unique email address
+      password:
+        type: string
+        description: Encrypted password
+      token:
+        type: string
+        description: Token created by FareFairy to validate users
+
+  Wishlists:
     type: object
     properties:
       email_address:

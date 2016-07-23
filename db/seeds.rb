@@ -15,7 +15,7 @@ vega = User.create! first_name: "Vega", last_name: "Ramirez", email: "vega@gento
 nastassia.accepted_friendships.create! friend_id: sinovia.id
 
 User.all.each do |user|
-  w = user.wishlists.create! name: "Test"
+  w = user.wishlists.create! name: "Gifts"
   w.items.create! name: "Toy"
 
 end
