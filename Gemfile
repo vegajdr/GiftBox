@@ -23,6 +23,8 @@ gem 'figaro'
 gem 'omniauth'
 gem 'coveralls', require: false
 gem 'rack-cors', :require => 'rack/cors'
+gem 'faker'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -42,7 +44,6 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'simplecov'
-  gem 'faker'
   gem 'byebug', platform: :mri
 end
 
