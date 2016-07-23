@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/users' => 'users#index'
 
   scope path: ":username" do
+    resources :wishlists
     resource :friendships, path: :friends do
       collection do
         post :accept

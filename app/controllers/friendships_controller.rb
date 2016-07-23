@@ -1,7 +1,7 @@
 class FriendshipsController < ApplicationController
   before_action :json_format
 
-  def index
+  def show
     @user = search_user
     @pending = @user.pending_friendships.map { |f| f.friend }
     @requested = @user.requested_friendships.map { |f| f.friend }
