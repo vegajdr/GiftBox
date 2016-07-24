@@ -1,7 +1,8 @@
 class WishlistsController < ApplicationController
 
   def index
-    @wishlists = current_user.wishlists
+    user = User.find_by username: params[:username]
+    @wishlists = user.wishlists
   end
 
   def create
