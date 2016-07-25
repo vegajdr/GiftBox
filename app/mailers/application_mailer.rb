@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'Gentoo Gifts'
+  default from: 'test@email.com'
   layout 'mailer'
 end
