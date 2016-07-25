@@ -20,4 +20,11 @@ class Friendship < ApplicationRecord
     Friendship.where( user: friend, friend: user ).first.delete
   end
 
+  def self.friend_create user, friend
+    user.accepted_friendships.create! friend: friend
+    friend.accepted_friendships.create! friend: user
+  end
+
+
+
 end
