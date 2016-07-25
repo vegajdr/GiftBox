@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :interests
       resources :holidays
     end
+    resource :invitation
   end
 
 end

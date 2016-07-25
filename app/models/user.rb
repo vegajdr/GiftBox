@@ -25,4 +25,6 @@ class User < ApplicationRecord
   has_many :items, through: :wishlists
 
   has_many :special_days
+
+  has_many :invitations, foreign_key: "created_by"
 end
