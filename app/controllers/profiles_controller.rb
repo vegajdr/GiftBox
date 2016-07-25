@@ -16,13 +16,22 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    # TODO Add response
-    current_user.update allowed_params
-    #create Profile page
+    request = JSON.parse params["ProfileData"]
+
+    current_user.update(
+      dob_day:      request["birthday"]["dob_day"],
+      dob_month:    request["birthday"]["dob_month"],
+      dob_year:     request["birthday"]["dob_year"]
+    )
+    request["holidays"].keys.each do |holiday|
+      current_user.holidays.create!(
+      name: holiday,
+      preset?: true
+    )
+    end
   end
 
   def update
-    # TODO Add response
     current_user.update allowed_params
     #create Profile page
   end
