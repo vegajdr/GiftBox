@@ -12,13 +12,16 @@ sinovia = User.create! first_name: "Sinovia", last_name: "Mayfield", email: "sin
 
 vega = User.create! first_name: "Vega", last_name: "Ramirez", email: "vega@gentoo.com", password: "password", username: "vega", dob_month: "04", dob_day: "10", dob_year: "1987"
 
-4.times do
-  User.create! first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", username: Faker::Internet.user_name
-end
+
 
 nastassia.accepted_friendships.create! friend_id: sinovia.id
 sinovia.requested_friendships.create! friend_id: vega.id
 sinovia.accepted_friendships.create! friend_id: nastassia.id
+
+4.times do
+  u = User.create! first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", username: Faker::Internet.user_name
+  nastassia.accepted_friendships.create! friend: u
+end
 
 User.all.each do |user|
   5.times do
