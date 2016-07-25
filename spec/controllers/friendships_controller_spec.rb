@@ -27,7 +27,6 @@ RSpec.describe FriendshipsController, type: :controller do
     old_friend_count = user.friends.count
 
     response = post :accept, accepted_friend: friend.username, username: user.username
-
     expect(user.accepted_friendships.count).to eq old_ac_count + 1
     expect(user.friends.count).to eq old_friend_count + 1
     expect(user.friends).to include friend

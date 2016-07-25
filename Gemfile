@@ -24,6 +24,7 @@ gem 'omniauth'
 gem 'coveralls', require: false
 gem 'rack-cors', :require => 'rack/cors'
 gem 'faker'
+gem 'rollbar'
 
 
 # Use Redis adapter to run Action Cable in production
