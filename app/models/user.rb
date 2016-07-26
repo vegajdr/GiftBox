@@ -37,6 +37,8 @@ class User < ApplicationRecord
 
   has_many :invitations, foreign_key: "created_by"
 
+  has_many :ideaboxes
+
   def self.with_token nonce
     token = AuthToken.active.find_by nonce: nonce
     token.user if token

@@ -27,15 +27,15 @@ sinovia.accepted_friendships.create! friend_id: nastassia.id
   u.generate_token_for "Gentoo User"
 end
 
-User.all.each do |user|
-  5.times do
-    w = user.wishlists.create! name: Faker::Hipster.word
-    5.times do
-      w.items.create! name: Faker::Beer.name
-    end
-  end
+# User.all.each do |user|
+#   5.times do
+#     w = user.wishlists.create! name: Faker::Hipster.word
+#     5.times do
+#       w.items.create! name: Faker::Beer.name
+#     end
+#   end
 
-end
+# end
 
 # Holidays
 ["Christmas",

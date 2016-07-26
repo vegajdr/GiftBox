@@ -41,6 +41,7 @@ class FriendshipsController < ApplicationController
         render json: { status: "You have requested #{friend.username} as your friend"}
       elsif params_options[:accept]
         Friendship.accept current_user, friend
+        Ideabox.create! current_user, friend
         render json: { status: "You have accepted #{friend.username} as your friend"}
       elsif params_options[:unfriend]
         Friendship.remove_friend current_user, friend

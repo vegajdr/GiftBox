@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726161327) do
+ActiveRecord::Schema.define(version: 20160726191851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 20160726161327) do
     t.boolean  "preset?",    default: false
   end
 
+  create_table "ideaboxes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ideaboxes_on_user_id", using: :btree
+  end
+
   create_table "interests", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                 null: false
@@ -78,6 +86,8 @@ ActiveRecord::Schema.define(version: 20160726161327) do
     t.datetime "updated_at",                       null: false
     t.string   "product_url"
     t.string   "image_url"
+    t.integer  "ideabox_id"
+    t.index ["ideabox_id"], name: "index_items_on_ideabox_id", using: :btree
     t.index ["user_holiday_id"], name: "index_items_on_user_holiday_id", using: :btree
     t.index ["user_interest_id"], name: "index_items_on_user_interest_id", using: :btree
     t.index ["wishlist_id"], name: "index_items_on_wishlist_id", using: :btree
@@ -149,6 +159,8 @@ ActiveRecord::Schema.define(version: 20160726161327) do
   add_foreign_key "auth_tokens", "users"
   add_foreign_key "colors", "users"
   add_foreign_key "friendships", "users"
+  add_foreign_key "ideaboxes", "users"
+  add_foreign_key "items", "ideaboxes"
   add_foreign_key "items", "user_holidays"
   add_foreign_key "items", "user_interests"
   add_foreign_key "items", "wishlists"
