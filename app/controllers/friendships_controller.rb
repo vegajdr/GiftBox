@@ -2,7 +2,7 @@ class FriendshipsController < ApplicationController
   before_action :json_format
 
   def show
-    @user = search_user
+    @user = current_user
     @pending = @user.pending_friendships.map { |f| f.friend }
     @requested = @user.requested_friendships.map { |f| f.friend }
   end
@@ -26,9 +26,9 @@ class FriendshipsController < ApplicationController
       params.permit :requested_friend, :accepted_friend
     end
 
-    def search_user
-      User.find_by username: params[:username]
-    end
+    # def search_user
+    #   User.find_by username: params[:username]
+    # end
 
     def friendship_status params_options
       friend = User.find_by username: params_options.values.first

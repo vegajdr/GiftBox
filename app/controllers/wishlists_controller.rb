@@ -3,7 +3,7 @@ class WishlistsController < ApplicationController
   before_action :json_format
 
   def index
-    user = User.find_by username: params[:username]
+    user = current_user
     @wishlists = user.wishlists
   end
 

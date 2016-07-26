@@ -7,11 +7,11 @@ class ProfilesController < ApplicationController
 
   def show
     @accepted_friend = current_user.friends.include? search_user
-    @user = search_user
-    if @user
+    @user = current_user
+    if @user.username == params[:username] || @accepted_friend
       render :show, status: :ok
     else
-      user_not_found_response
+      render json: { error: "You're not authorized to access this user's profile"}
     end
   end
 
