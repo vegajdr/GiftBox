@@ -1,6 +1,7 @@
 class HolidaysController < ApplicationController
 
   def create
+    # FIXME # This is not necessary, should take care of creating a holiday
     current_user.update birthday_params
     special_day_params[:special_days].each do |day|
       current_user.special_days.create! day

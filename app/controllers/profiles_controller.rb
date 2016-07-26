@@ -33,7 +33,6 @@ class ProfilesController < ApplicationController
 
   def update
     current_user.update allowed_params
-    #create Profile page
   end
 
   private
