@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  # post "/login" => "profiles#login"
-  # post "/test" => "profiles#test"
   get '/users' => 'users#index'
+  post '/register' => 'sessions#register'
+  post '/login' => 'sessions#login'
 
   scope path: ":username" do
     resources :wishlists

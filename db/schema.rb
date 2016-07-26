@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725161638) do
+ActiveRecord::Schema.define(version: 20160726161327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "auth_tokens", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "nonce"
+    t.string   "name"
+    t.datetime "expires_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nonce"], name: "index_auth_tokens_on_nonce", using: :btree
+    t.index ["user_id"], name: "index_auth_tokens_on_user_id", using: :btree
+  end
 
   create_table "colors", force: :cascade do |t|
     t.string   "hex"
@@ -101,30 +113,28 @@ ActiveRecord::Schema.define(version: 20160725161638) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",      null: false
-    t.string   "encrypted_password",     default: "",      null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,       null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "username"
     t.string   "dob_day"
     t.string   "dob_month"
     t.string   "dob_year"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "provider",               default: "email", null: false
-    t.string   "uid",                    default: "",      null: false
-    t.json     "tokens"
+    t.string   "facebook_token"
+    t.json     "facebook_data"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
     t.index ["username"], name: "index_users_on_username", using: :btree
   end
 
@@ -136,6 +146,7 @@ ActiveRecord::Schema.define(version: 20160725161638) do
     t.index ["user_id"], name: "index_wishlists_on_user_id", using: :btree
   end
 
+  add_foreign_key "auth_tokens", "users"
   add_foreign_key "colors", "users"
   add_foreign_key "friendships", "users"
   add_foreign_key "items", "user_holidays"

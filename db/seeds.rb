@@ -12,6 +12,9 @@ sinovia = User.create! first_name: "Sinovia", last_name: "Mayfield", email: "sin
 
 vega = User.create! first_name: "Vega", last_name: "Ramirez", email: "vega@gentoo.com", password: "password", username: "vega", dob_month: "04", dob_day: "10", dob_year: "1987"
 
+nastassia.generate_token_for "Gentoo User"
+sinovia.generate_token_for "Gentoo User"
+vega.generate_token_for "Gentoo User"
 
 
 nastassia.accepted_friendships.create! friend_id: sinovia.id
@@ -21,6 +24,7 @@ sinovia.accepted_friendships.create! friend_id: nastassia.id
 4.times do
   u = User.create! first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", username: Faker::Internet.user_name
   nastassia.accepted_friendships.create! friend: u
+  u.generate_token_for "Gentoo User"
 end
 
 User.all.each do |user|

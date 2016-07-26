@@ -248,25 +248,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  class CustomStrategy < Devise::Strategies::Base
-    def valid?
-      request.env["HTTP_AUTHORIZATION"].present?
-    end
-
-    def authenticate!
-      username = request.env["HTTP_AUTHORIZATION"]
-      user  = User.find_by username: username
-      if user
-        success! user
-      else
-        fail! "No user matches that username"
-      end
-    end
-  end
 
   config.warden do |manager|
-    manager.strategies.add(:auth_header, CustomStrategy)
-    manager.default_strategies(scope: :user).unshift :auth_header
+    manager.strategies.add :token_header, TokenStrategy
+    manager.default_strategies(scope: :user).unshift :token_header
   end
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
