@@ -176,9 +176,9 @@ ol li {
         <tr>
           <td>
             <h1>Join Gentoo</h1>
-            <p>Your friend has invited you to Gentoo</p>
+            <p>Your friend <%= @user.first_name %> has invited you to Gentoo</p>
             <h2>Why should you join?</h2>
-            <p>Imagine receiving the presents you have always wanted, you can with Gentoo. Once you create an account, you will be friends with *Sender* and they will be able to keep a wishlist of presents to suit your interests </p>
+            <p>Imagine receiving the presents you have always wanted, you can with Gentoo. Once you create an account, you will be friends with <%= @user.first_name %> and they will be able to keep a wishlist of presents to suit your interests </p>
             <!-- button -->
             <table class="btn-primary" cellpadding="0" cellspacing="0" border="0">
               <tr>
