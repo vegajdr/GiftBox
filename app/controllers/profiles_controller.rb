@@ -24,8 +24,8 @@ class ProfilesController < ApplicationController
     )
     request["holidays"].keys.each do |holiday|
       current_user.holidays.create!(
-      name: holiday,
-      preset?: true
+      name:         holiday,
+      preset?:      true
     )
     end
   end

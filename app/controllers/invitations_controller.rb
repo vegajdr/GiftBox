@@ -8,4 +8,5 @@ class InvitationsController < ApplicationController
     email = InviteMailer.invite_email(invitation.email, current_user).deliver_later
     render json: current_user, status: :created
   end
+  
 end

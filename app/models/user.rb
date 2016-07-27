@@ -25,8 +25,8 @@ class User < ApplicationRecord
   has_many :user_holidays
   has_many :holidays, through: :user_holidays
 
-  has_many :user_interests
-  has_many :interests, through: :user_interests
+  has_many :user_interests, dependent: :destroy
+  has_many :interests, through: :user_interests, dependent: :destroy
 
   has_many :colors
 

@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/users' => 'users#index'
+
   post '/register' => 'sessions#register'
   post '/login' => 'sessions#login'
+
   get '/:username/profile' => 'profiles#friend_profile'
+
+  get '/default_interests' => 'interests#default_interests'
 
   resources :wishlists do
     resources :items
@@ -22,5 +26,4 @@ Rails.application.routes.draw do
     resources :holidays
   end
   resource :invitation
-
 end
