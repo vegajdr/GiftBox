@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#login'
   get '/:username/profile' => 'profiles#friend_profile'
 
-  resources :wishlists
+  resources :wishlists do
+    resources :items
+  end
   resource :friendships, path: :friends do
     collection do
       post :accept

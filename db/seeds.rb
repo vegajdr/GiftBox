@@ -27,15 +27,15 @@ sinovia.accepted_friendships.create! friend_id: nastassia.id
   u.generate_token_for "Gentoo User"
 end
 
-# User.all.each do |user|
-#   5.times do
-#     w = user.wishlists.create! name: Faker::Hipster.word
-#     5.times do
-#       w.items.create! name: Faker::Beer.name
-#     end
-#   end
+User.all.each do |user|
+  5.times do
+    w = user.wishlists.create! name: Faker::Hipster.word
+    5.times do
+      w.items.create! name: Faker::Beer.name
+    end
+  end
 
-# end
+end
 
 # Holidays
 ["Christmas",
@@ -50,13 +50,35 @@ end
 end
 
 # Interests
-[ "Sports",
-"Cooking",
-"Reading",
-"Drawing",
-"Technology",
-"Gaming",
-"Table Tennis"].each do |interest|
+[ "Arts & Entertainment",
+"Autos & Vehicles",
+'Beauty',
+'Health & Fitness',
+'Books & Literature',
+'Business & Industrial',
+'Cats',
+'Computers & Electronics',
+'Design',
+'Dogs',
+'Finance',
+'Food & Drink',
+'Games',
+'Hobbies & Leisure',
+'Home & Garden',
+'Internet & Technology',
+'Jobs & Education',
+'Law & Government',
+'Magic & Illusions',
+'Movies & Film',
+'Music',
+'News',
+'Pets & Animals',
+'Programming & Web Development',
+'Real Estate',
+'Science',
+'Shopping',
+'Sports',
+'Travel'].each do |interest|
   int = Interest.create! name: interest, preset?: true
   nastassia.user_interests.create interest_id: int.id
   vega.user_interests.create interest_id: int.id

@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   belongs_to :user_interest, optional: true
   belongs_to :user_holiday, optional: true
 
-  validates_presence_of :item
+  validates_presence_of :name
 
 
   def interest
