@@ -5,21 +5,20 @@ Rails.application.routes.draw do
   get '/users' => 'users#index'
   post '/register' => 'sessions#register'
   post '/login' => 'sessions#login'
+  get '/:username/profile' => 'profiles#friend_profile'
 
-  # scope path: ":username" do
-    resources :wishlists
-    resource :friendships, path: :friends do
-      collection do
-        post :accept
-        delete :unfriend
-      end
+  resources :wishlists
+  resource :friendships, path: :friends do
+    collection do
+      post :accept
+      delete :unfriend
     end
-    resource :profile do
-      post :dates
-      resources :interests
-      resources :holidays
-    end
-    resource :invitation
-  # end
+  end
+  resource :profile do
+    post :dates
+    resources :interests
+    resources :holidays
+  end
+  resource :invitation
 
 end

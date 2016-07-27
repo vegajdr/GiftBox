@@ -3,8 +3,7 @@ class WishlistsController < ApplicationController
   before_action :json_format
 
   def index
-    user = current_user
-    @wishlists = user.wishlists
+    @wishlists = current_user.wishlists
   end
 
   def create

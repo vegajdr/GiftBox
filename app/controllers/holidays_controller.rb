@@ -1,5 +1,10 @@
 class HolidaysController < ApplicationController
 
+  def index
+    @holidays = current_user.holidays
+    render json: @holidays
+  end
+
   def create
     # FIXME # This is not necessary, should take care of creating a holiday
     current_user.update birthday_params
