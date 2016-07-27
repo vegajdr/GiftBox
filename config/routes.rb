@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/register' => 'sessions#register'
   post '/login' => 'sessions#login'
 
-  scope path: ":username" do
+  # scope path: ":username" do
     resources :wishlists
     resource :friendships, path: :friends do
       collection do
@@ -20,6 +20,6 @@ Rails.application.routes.draw do
       resources :holidays
     end
     resource :invitation
-  end
+  # end
 
 end
