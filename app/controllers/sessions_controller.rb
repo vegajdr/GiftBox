@@ -21,11 +21,6 @@ class SessionsController < ApplicationController
     else
       @token = @user.auth_tokens.find_by name: "Gentoo User"
     end
-
   end
 
-  def me
-    @user     = current_user
-    @birthday = Facebook.new(@user).get_birthday
-  end
 end
