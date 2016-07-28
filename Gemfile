@@ -26,7 +26,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'faker'
 gem 'rollbar'
 
-
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

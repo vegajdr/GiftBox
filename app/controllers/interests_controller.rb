@@ -24,7 +24,6 @@ class InterestsController < ApplicationController
   def destroy
     interest = current_user.interests.find_by id: params[:id]
     interest.destroy
-
     render json: { status: "Interest has been deleted" }, status: :ok
   end
 

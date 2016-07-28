@@ -27,9 +27,25 @@ RSpec.describe FriendshipsController, type: :controller do
     old_friend_count = user.friends.count
 
     response = post :accept, accepted_friend: friend.username, username: user.username
+
     expect(user.accepted_friendships.count).to eq old_ac_count + 1
     expect(user.friends.count).to eq old_friend_count + 1
     expect(user.friends).to include friend
+  end
+
+  it "creates IdeaBox when user is accepted as friend" do
+    user = create :user
+    sign_in user
+    friend = create :user
+
+    Friendship.request user, friend
+
+    old_ideabox_count = user.ideaboxes.count
+
+    response = post :accept, accepted_friend: friend.username
+
+    expect(user.ideaboxes.count).to eq old_ideabox_count + 1
+    expect(user.ideaboxes.first.friend).to eq friend
   end
 
   it "allows users to remove friends" do
