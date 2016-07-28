@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :wishlist
+  belongs_to :ideabox
 
   has_many :item_interests
   has_many :user_interests, through: :item_interests

@@ -30,6 +30,12 @@ Rails.application.routes.draw do
     resources :holidays
   end
 
+  scope "/:username" do
+    resource :profile do
+      resource :ideabox
+    end
+  end
+
   resource :invitation, only: [:create]
 
 

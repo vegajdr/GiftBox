@@ -57,10 +57,22 @@ end
   u = User.create! first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", username: Faker::Name.first_name
    Friendship.request u, nastassia
    Friendship.accept nastassia, u
+   idea_n = Ideabox.create! user: nastassia, friend: u
+
    Friendship.request u, vega
    Friendship.accept vega, u
+   idea_v = Ideabox.create! user: vega, friend: u
+
    Friendship.request u, sinovia
    Friendship.accept sinovia, u
+   idea_s = Ideabox.create! user: sinovia, friend: u
+
+   [idea_n, idea_s, idea_v].each do |ideabox|
+     3.times do
+       ideabox.items.create! name: Faker::StarWars.vehicle
+     end
+   end
+
   u.generate_token_for "Gentoo User"
 end
 
