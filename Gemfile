@@ -25,10 +25,6 @@ gem 'coveralls', require: false
 gem 'rack-cors', :require => 'rack/cors'
 gem 'faker'
 gem 'rollbar'
-gem 'sidekiq'
-gem 'sinatra', github: 'sinatra'
-gem 'rack-protection', github: 'sinatra/rack-protection'
-
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
