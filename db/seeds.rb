@@ -67,11 +67,11 @@ end
    Friendship.accept sinovia, u
    idea_s = Ideabox.create! user: sinovia, friend: u
 
-   [idea_n, idea_s, idea_v].each do |ideabox|
-     3.times do
-       ideabox.items.create! name: Faker::StarWars.vehicle
-     end
-   end
+  #  [idea_n, idea_s, idea_v].each do |ideabox|
+  #    3.times do
+  #      ideabox.items.create! name: Faker::StarWars.vehicle
+  #    end
+  #  end
 
   u.generate_token_for "Gentoo User"
 end
