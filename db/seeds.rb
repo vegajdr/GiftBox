@@ -46,7 +46,7 @@ sinovia.requested_friendships.create! friend_id: vega.id
 sinovia.accepted_friendships.create! friend_id: nastassia.id
 
 4.times do
-  u = User.create! first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", username: Faker::Internet.user_name
+  u = User.create! first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", username: Faker::Name.first_name
    Friendship.request u, nastassia
    Friendship.request u, vega
    Friendship.request u, sinovia
@@ -54,7 +54,7 @@ sinovia.accepted_friendships.create! friend_id: nastassia.id
 end
 
 4.times do
-  u = User.create! first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", username: Faker::Internet.user_name
+  u = User.create! first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", username: Faker::Name.first_name
    Friendship.request u, nastassia
    Friendship.accept nastassia, u
    Friendship.request u, vega

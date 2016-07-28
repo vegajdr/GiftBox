@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728152123) do
+ActiveRecord::Schema.define(version: 20160728165012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,24 @@ ActiveRecord::Schema.define(version: 20160728152123) do
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "item_holidays", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "user_holiday_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["item_id"], name: "index_item_holidays_on_item_id", using: :btree
+    t.index ["user_holiday_id"], name: "index_item_holidays_on_user_holiday_id", using: :btree
+  end
+
+  create_table "item_interests", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "user_interest_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["item_id"], name: "index_item_interests_on_item_id", using: :btree
+    t.index ["user_interest_id"], name: "index_item_interests_on_user_interest_id", using: :btree
   end
 
   create_table "items", force: :cascade do |t|
@@ -161,6 +179,10 @@ ActiveRecord::Schema.define(version: 20160728152123) do
   add_foreign_key "colors", "users"
   add_foreign_key "friendships", "users"
   add_foreign_key "ideaboxes", "users"
+  add_foreign_key "item_holidays", "items"
+  add_foreign_key "item_holidays", "user_holidays"
+  add_foreign_key "item_interests", "items"
+  add_foreign_key "item_interests", "user_interests"
   add_foreign_key "items", "ideaboxes"
   add_foreign_key "items", "user_holidays"
   add_foreign_key "items", "user_interests"

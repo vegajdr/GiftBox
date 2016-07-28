@@ -1,7 +1,12 @@
 class Item < ApplicationRecord
   belongs_to :wishlist
-  belongs_to :user_interest, optional: true
-  belongs_to :user_holiday, optional: true
+
+  has_many :item_interests
+  has_many :user_interests, through: :item_interests
+
+  has_many :item_holidays
+  has_many :user_holidays, through: :item_holidays
+
 
   validates_presence_of :name
 
