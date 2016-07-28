@@ -25,6 +25,9 @@ gem 'coveralls', require: false
 gem 'rack-cors', :require => 'rack/cors'
 gem 'faker'
 gem 'rollbar'
+gem 'fog'
+gem 'rmagick'
+gem 'carrierwave'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
