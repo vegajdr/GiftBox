@@ -4,12 +4,14 @@ class SessionsController < ApplicationController
   before_action { request.format = :json }
 
   def register
+    binding.pry
     @user = User.create!(
       email:        params[:email],
       password:     params[:password],
       username:     params[:username],
       first_name:   params[:first_name],
-      last_name:    params[:last_name]
+      last_name:    params[:last_name],
+      avatar:       params[:picture]
     )
     @token = @user.generate_token_for "Gentoo User"
   end
