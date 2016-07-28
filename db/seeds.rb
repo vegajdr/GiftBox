@@ -56,11 +56,11 @@ end
 4.times do
   u = User.create! first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", username: Faker::Internet.user_name
    Friendship.request u, nastassia
-   Friendship.accept u, nastassia
+   Friendship.accept nastassia, u
    Friendship.request u, vega
-   Friendship.accept u, vega
+   Friendship.accept vega, u
    Friendship.request u, sinovia
-   Friendship.accept u, sinovia
+   Friendship.accept sinovia, u
   u.generate_token_for "Gentoo User"
 end
 
