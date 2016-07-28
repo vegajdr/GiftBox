@@ -20,6 +20,16 @@ class WishlistsController < ApplicationController
     wishlist.delete
   end
 
+  def friend_wishlists
+    friend = search_user
+    @wishlists = friend.wishlists
+    if friend && current_user.friends.include? @user
+      render :index, status: :ok
+    else
+      render json: { error: "You're not authorized to access this user's profile"}
+    end
+  end
+
 
   private
 

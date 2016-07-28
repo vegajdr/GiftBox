@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   before_action { request.format = :json }
 
   def register
-    binding.pry
     @user = User.create!(
       email:        params[:email],
       password:     params[:password],

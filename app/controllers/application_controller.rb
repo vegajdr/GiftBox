@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
   def user_not_found_response
     render json: { error: "User not found"}
   end
+
+  def search_user
+    User.find_by username: params[:username]
+  end
+
 end

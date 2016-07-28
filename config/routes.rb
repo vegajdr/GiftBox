@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get '/default_interests' => 'interests#default_interests'
 
+  get '/:username/wishlists' => 'wishlists#friend_wishlists'
+
   resources :wishlists do
     resources :items
   end

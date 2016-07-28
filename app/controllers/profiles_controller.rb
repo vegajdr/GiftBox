@@ -52,8 +52,5 @@ class ProfilesController < ApplicationController
       params.permit(:first_name, :last_name, :dob_day, :dob_month, :dob_year)
     end
 
-    def search_user
-      User.find_by username: params[:username]
-    end
 
 end
