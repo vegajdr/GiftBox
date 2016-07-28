@@ -6,7 +6,5 @@ json.user @wishlists do |wishlist|
     json.name item.name
     json.image_url item.image_url
     json.product_url item.product_url
-    json.interest item.interest
-    json.holiday item.holiday
   end
 end
