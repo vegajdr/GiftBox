@@ -8,10 +8,12 @@ class WishlistsController < ApplicationController
 
   def create
     current_user.wishlists.create! name: params[:name]
+
+    render json: { status: "Wishlist has been created"}, status: :ok
   end
 
   def update
-    wishlist = Wishlist.find params[:id]
+    wishlist = current_user.wishlists.find params[:id]
     wishlist.update approved_params
   end
 
