@@ -67,11 +67,11 @@ end
    Friendship.accept sinovia, u
    idea_s = Ideabox.create! user: sinovia, friend: u
 
-  #  [idea_n, idea_s, idea_v].each do |ideabox|
-  #    3.times do
-  #      ideabox.items.create! name: Faker::StarWars.vehicle
-  #    end
-  #  end
+   [idea_n, idea_s, idea_v].each do |ideabox|
+     3.times do
+       ideabox.items.create! name: Faker::StarWars.vehicle
+     end
+   end
 
   u.generate_token_for "Gentoo User"
 end
@@ -129,9 +129,12 @@ end
 'Sports',
 'Travel'].each do |interest|
   int = Interest.create! name: interest, preset?: true
-  nastassia.user_interests.create interest_id: int.id
-  vega.user_interests.create interest_id: int.id
-  sinovia.user_interests.create interest_id: int.id
+end
+
+5.times do
+  nastassia.user_interests.create! interest: Interest.all.sample
+  vega.user_interests.create! interest: Interest.all.sample
+  sinovia.user_interests.create! interest: Interest.all.sample
 end
 
 # Colors

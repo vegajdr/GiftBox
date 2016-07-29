@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'test@email.com'
+  default from: 'no-reply@gentoo.app'
   layout 'mailer'
 end

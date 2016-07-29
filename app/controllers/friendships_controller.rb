@@ -19,6 +19,10 @@ class FriendshipsController < ApplicationController
     friendship_status unfriend: params[:removed_friend]
   end
 
+  def deny
+    friendship_status deny: params[:denied_friend]
+  end
+
 
   private
 
@@ -43,7 +47,7 @@ class FriendshipsController < ApplicationController
         Friendship.accept current_user, friend
         Ideabox.create! user: current_user, friend: friend
         render json: { status: "You have accepted #{friend.username} as your friend"}
-      elsif params_options[:unfriend]
+      elsif params_options[:unfriend] || params_options [:deny]
         Friendship.remove_friend current_user, friend
         render json: { status: "You have unfriended #{friend.username}"}
       end

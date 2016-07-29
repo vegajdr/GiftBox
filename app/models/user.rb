@@ -9,7 +9,7 @@ class User < ApplicationRecord
   end
 
   mount_uploader :avatar, AvatarUploader
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -40,6 +40,8 @@ class User < ApplicationRecord
   has_many :invitations, foreign_key: "created_by"
 
   has_many :ideaboxes
+
+  has_many :favorites
 
   def self.with_token nonce
     token = AuthToken.active.find_by nonce: nonce
