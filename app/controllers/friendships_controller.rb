@@ -30,10 +30,6 @@ class FriendshipsController < ApplicationController
       params.permit :requested_friend, :accepted_friend
     end
 
-    # def search_user
-    #   User.find_by username: params[:username]
-    # end
-
     def friendship_status params_options
       friend = User.find_by username: params_options.values.first
       unless friend

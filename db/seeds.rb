@@ -88,15 +88,18 @@ end
 
 # Holidays
 ["Christmas",
-"Birthday",
-"Anniversary",
+"Hannukah",
+"Thanksgiving",
 "New Year's",
 "Valentine's Day"].each do |holiday|
   hol = Holiday.create! name: holiday, preset?: true
-  nastassia.user_holidays.create holiday_id: hol.id
-  vega.user_holidays.create holiday_id: hol.id
-  sinovia.user_holidays.create holiday_id: hol.id
 end
+
+  nastassia.user_holidays.create holiday: Holiday.all.sample
+  vega.user_holidays.create     holiday: Holiday.all.sample
+  sinovia.user_holidays.create  holiday: Holiday.all.sample
+
+
 
 # Interests
 [ "Arts & Entertainment",
@@ -138,7 +141,7 @@ end
 end
 
 # Colors
-[ "White",
+colors = [ "White",
 "Blue",
 "Red",
 "Yellow",
@@ -146,8 +149,10 @@ end
 "Pink",
 "Black",
 "Green",
-"Brown"].each do |color|
-  nastassia.colors.create! name: color
-  vega.colors.create! name: color
-  sinovia.colors.create! name: color
+"Brown"]
+
+2.times do
+  nastassia.colors.create! name: colors.sample
+  vega.colors.create! name: colors.sample
+  sinovia.colors.create! name: colors.sample
 end
