@@ -61,4 +61,13 @@ RSpec.describe FriendshipsController, type: :controller do
 
     expect(user.friends.count).to eq old_friends_count - 1
   end
+
+  it 'allows users to deny friend requests' do
+    user = create :user
+    sign_in user
+    friend = create :user
+
+    Friendship.request user, friend
+
+  end
 end
