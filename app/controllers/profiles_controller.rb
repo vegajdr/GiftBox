@@ -1,8 +1,5 @@
 class ProfilesController < ApplicationController
   before_action :json_format
-  # skip_before_action :verify_authenticity_token
-  # skip_before_action :authenticate_user!, only: [:login, :profile]
-
 
   def show
     @accepted_friend = current_user.friends.include? search_user
@@ -15,18 +12,29 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    request = JSON.parse params["ProfileData"]
+    if params["birthday"]
+      birthday = BirthdayUpdater.new current_user, params["birthday"]
+      birthday.update
+    end
 
-    current_user.update(
-      dob_day:      request["birthday"]["dob_day"],
-      dob_month:    request["birthday"]["dob_month"],
-      dob_year:     request["birthday"]["dob_year"]
-    )
-    request["holidays"].keys.each do |holiday|
-      current_user.holidays.create!(
-      name:         holiday,
-      preset?:      true
-    )
+    if params["specialDay"]
+      special_days = SpecialDayUpdater.new current_user, params['specialDay']
+      special_days.create
+    end
+
+    if params["holidays"]
+      holidays = HolidaysUpdater.new current_user, params["holidays"]
+      holidays.create
+    end
+
+    if params["interests"]
+      interests = InterestUpdater.new current_user, params['interests']
+      interests.create
+    end
+
+    if params["favorites"]
+      favorites = FavoritesUpdater.new current_user, params["favorites"]
+      favorites.create
     end
   end
 

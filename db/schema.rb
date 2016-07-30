@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729153557) do
+ActiveRecord::Schema.define(version: 20160730205518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160729153557) do
     t.string   "restaurant"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "custom"
     t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
   end
 
@@ -60,9 +61,12 @@ ActiveRecord::Schema.define(version: 20160729153557) do
   create_table "holidays", force: :cascade do |t|
     t.string   "name"
     t.string   "season"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "preset?",    default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "preset?",       default: false
+    t.string   "holiday_day"
+    t.string   "holiday_month"
+    t.string   "holiday_year"
   end
 
   create_table "ideaboxes", force: :cascade do |t|

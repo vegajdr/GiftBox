@@ -68,21 +68,33 @@ end
    idea_s = Ideabox.create! user: sinovia, friend: u
 
    [idea_n, idea_s, idea_v].each do |ideabox|
-     3.times do
-       ideabox.items.create! name: Faker::StarWars.vehicle
-     end
+       ideabox.items.create! name: "Ring"
+       ideabox.items.create! name: "Shirt"
+       ideabox.items.create! name: "Gift Card"
    end
 
   u.generate_token_for "Gentoo User"
 end
 
 User.all.each do |user|
-  5.times do
-    w = user.wishlists.create! name: Faker::Hipster.word
-    5.times do
-      w.items.create! name: Faker::Beer.name
-    end
-  end
+    books = user.wishlists.create! name: "Books"
+    movies = user.wishlists.create! name: "Movies"
+    gift_cards = user.wishlists.create! name: "Gift Cards"
+
+    books.items.create! name: "The Brothers Karamazov"
+    books.items.create! name: "Slaughterhouse-five"
+    books.items.create! name: "One Flew Over The Cuckoo's Nest"
+
+    movies.items.create! name: "Dr. Strangelove"
+    movies.items.create! name: "Spotlight"
+    movies.items.create! name: "Pan's Labyrinth"
+
+    gift_cards.items.create! name: "Panera Bread"
+    gift_cards.items.create! name: "Dame's Chicken and Waffles"
+    gift_cards.items.create! name: "Target"
+    # 5.times do
+    #   w.items.create! name: Faker::Beer.name
+    # end
 
 end
 
@@ -107,28 +119,19 @@ end
 'Beauty',
 'Health & Fitness',
 'Books & Literature',
-'Business & Industrial',
-'Cats',
 'Computers & Electronics',
 'Design',
-'Dogs',
-'Finance',
 'Food & Drink',
 'Games',
 'Hobbies & Leisure',
 'Home & Garden',
 'Internet & Technology',
-'Jobs & Education',
-'Law & Government',
 'Magic & Illusions',
 'Movies & Film',
 'Music',
-'News',
 'Pets & Animals',
 'Programming & Web Development',
-'Real Estate',
 'Science',
-'Shopping',
 'Sports',
 'Travel'].each do |interest|
   int = Interest.create! name: interest, preset?: true
@@ -152,7 +155,7 @@ colors = [ "White",
 "Brown"]
 
 2.times do
-  nastassia.colors.create! name: colors.sample
-  vega.colors.create! name: colors.sample
-  sinovia.colors.create! name: colors.sample
+  nastassia.colors.create!  name: colors.sample
+  vega.colors.create!       name: colors.sample
+  sinovia.colors.create!    name: colors.sample
 end

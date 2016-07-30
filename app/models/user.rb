@@ -18,28 +18,28 @@ class User < ApplicationRecord
 
   has_many :auth_tokens, dependent: :destroy
 
-  has_many :accepted_friendships, -> { where status: 'accepted'}, class_name: "Friendship"
-  has_many :pending_friendships, -> { where status: 'pending' }, class_name: "Friendship"
-  has_many :requested_friendships, -> { where status: 'requested' }, class_name: "Friendship"
+  has_many :accepted_friendships, -> { where status: 'accepted'}, class_name: "Friendship", dependent: :destroy
+  has_many :pending_friendships, -> { where status: 'pending' }, class_name: "Friendship", dependent: :destroy
+  has_many :requested_friendships, -> { where status: 'requested' }, class_name: "Friendship", dependent: :destroy
 
   has_many :friends, through: :accepted_friendships, foreign_key: "friend_id", dependent: :destroy
 
-  has_many :user_holidays
+  has_many :user_holidays, dependent: :destroy
   has_many :holidays, through: :user_holidays
 
   has_many :user_interests, dependent: :destroy
   has_many :interests, through: :user_interests, dependent: :destroy
 
-  has_many :colors
+  has_many :colors, dependent: :destroy
 
-  has_many :wishlists
+  has_many :wishlists, dependent: :destroy
   has_many :items, through: :wishlists
 
   has_many :special_days
 
   has_many :invitations, foreign_key: "created_by"
 
-  has_many :ideaboxes
+  has_many :ideaboxes, dependent: :destroy
 
   has_many :favorites
 
