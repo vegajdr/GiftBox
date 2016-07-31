@@ -7,9 +7,15 @@ json.user do
   json.friends do
     json.array! @user.friends
   end
-  json.holidays @user.holidays.pluck(:name)
-  json.colors @user.colors.pluck(:name)
-  json.interests @user.interests.pluck(:name)
+  json.holidays do
+    json.array! @user.holidays
+  end
+  json.interests do
+    json.array! @user.interests
+  end
+  json.favorites do
+    json.array! @user.colors
+  end
   json.birthday do
     json.dob_month @user.dob_month
     json.dob_day @user.dob_day

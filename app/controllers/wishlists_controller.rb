@@ -7,9 +7,14 @@ class WishlistsController < ApplicationController
   end
 
   def create
-    current_user.wishlists.create! name: params[:name]
-
-    render json: { status: "Wishlist has been created"}, status: :ok
+    # TODO NEED TO WORK ON THIS LOGIC
+    # {"name"=>"Pajama Party", "item"=>{"name"=>"Pjs", "description"=>"I need pajamas", "holiday"=>"Sleep Day", "interest"=>"Interests"}
+    wishlist = current_user.wishlists.create! name: params[:name]
+    if params[:item]
+      item = wishlist.items.create! item_params
+    end
+    binding.pry
+    render json: wishlist, status: :ok
   end
 
   def update
@@ -37,6 +42,10 @@ class WishlistsController < ApplicationController
 
     def approved_params
       params.permit [:name]
+    end
+
+    def item_params
+      params.require(:item).permit :name, :description
     end
 
 end
