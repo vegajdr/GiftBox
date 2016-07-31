@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :holiday do
-    name "MyString"
-    season "MyString"
+    name "Christmas"
+    season "Winter"
   end
 end
