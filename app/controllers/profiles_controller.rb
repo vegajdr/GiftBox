@@ -12,30 +12,10 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    if params[:birthday]
-      birthday = BirthdayUpdater.new current_user, params[:birthday]
-      birthday.update
-    end
+    profile_creation = ProfileCreator.new current_user, params
+    profile_creation.create
 
-    if params[:specialDay]
-      special_days = SpecialDayUpdater.new current_user, params[:specialDay]
-      special_days.create
-    end
-
-    if params[:holidays]
-      holidays = HolidaysUpdater.new current_user, params[:holidays]
-      holidays.create
-    end
-
-    if params[:interests]
-      interests = InterestUpdater.new current_user, params[:interests]
-      interests.create
-    end
-
-    if params[:favorites]
-      favorites = FavoritesUpdater.new current_user, params[:favorites]
-      favorites.create
-    end
+    render json: { status: "Profile has been updated" }
   end
 
   def update

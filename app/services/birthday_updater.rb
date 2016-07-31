@@ -4,7 +4,7 @@ class BirthdayUpdater
     @user, @params = user, params
   end
 
-  def update
+  def create
     @user.update!(
       dob_day:      @params["dob_day"],
       dob_month:    @params["dob_month"],
