@@ -13,7 +13,6 @@ class WishlistsController < ApplicationController
     if params[:item]
       item = wishlist.items.create! item_params
     end
-    binding.pry
     render json: wishlist, status: :ok
   end
 
