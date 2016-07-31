@@ -14,9 +14,7 @@ class FavoritesUpdater
       season:     @params["fav_season"],
       restaurant: @params["fav_restaurant"],
       custom:     @params["fav_custom"],
-
     )
-
   end
 
   def color_create

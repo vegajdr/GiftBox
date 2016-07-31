@@ -154,8 +154,6 @@ colors = [ "White",
 "Green",
 "Brown"]
 
-2.times do
-  nastassia.colors.create!  name: colors.sample
-  vega.colors.create!       name: colors.sample
-  sinovia.colors.create!    name: colors.sample
-end
+nastassia.colors.create!  name: colors.sample
+vega.colors.create!       name: colors.sample
+sinovia.colors.create!    name: colors.sample
