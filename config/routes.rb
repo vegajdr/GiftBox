@@ -2,7 +2,17 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  post "/login" => 'sessions#login'
+  post '/register' => 'sessions#register'
+
+  get '/users' => 'users#index'
+
   get '/:username/profile' => 'profiles#friend_profile'
+
+  get '/default_interests' => 'interests#default_interests'
+
+  get '/:username/wishlists' => 'wishlists#friend_wishlists'
+
 
 
   resources :wishlists do
@@ -11,9 +21,9 @@ Rails.application.routes.draw do
 
   resource :friendships, path: :friends do
     collection do
-      post :accept
-      delete :unfriend
-      post :deny
+      post    :accept
+      delete  :unfriend
+      post    :deny
     end
   end
 
@@ -21,6 +31,7 @@ Rails.application.routes.draw do
     post :dates
     resources :interests
     resources :holidays
+    resource  :favorites
   end
 
   scope "/:username" do
@@ -31,15 +42,6 @@ Rails.application.routes.draw do
 
   resource :invitation, only: [:create]
 
-  post "/login" => 'sessions#login'
-  post '/register' => 'sessions#register'
-
-  get '/users' => 'users#index'
-
-
-  get '/default_interests' => 'interests#default_interests'
-
-  get '/:username/wishlists' => 'wishlists#friend_wishlists'
 
 
 

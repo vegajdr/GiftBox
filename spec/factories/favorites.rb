@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :favorite do
-    user nil
-    color "MyString"
-    animal "MyString"
-    season "MyString"
-    restaurant "MyString"
+    user
+    color "Red"
+    animal "Lion"
+    season "Winter"
+    restaurant "Arby's"
   end
 end

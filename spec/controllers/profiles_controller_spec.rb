@@ -73,7 +73,7 @@ RSpec.describe ProfilesController, type: :controller do
     }
 
     expect(user.favorites.count).to eq old_favorite_count + 1
-    expect(user.colors).to include(user.colors.find_by name: "Purple")
+    expect(user.favorites.first.color).to eq "Purple"
     expect(user.favorites.first.animal).to eq "Bears"
     expect(user.favorites.first.season).to eq "Spring"
     expect(user.favorites.first.restaurant).to eq "Arby's"

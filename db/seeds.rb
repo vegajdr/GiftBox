@@ -92,10 +92,9 @@ User.all.each do |user|
     gift_cards.items.create! name: "Panera Bread"
     gift_cards.items.create! name: "Dame's Chicken and Waffles"
     gift_cards.items.create! name: "Target"
-    # 5.times do
-    #   w.items.create! name: Faker::Beer.name
-    # end
 
+    user.user_interests.create! interest: Interest.all.sample
+    user.user_holidays.create  holiday: Holiday.all.sample
 end
 
 # Holidays
@@ -144,16 +143,25 @@ end
 end
 
 # Colors
-colors = [ "White",
-"Blue",
-"Red",
-"Yellow",
-"Orange",
-"Pink",
-"Black",
-"Green",
-"Brown"]
+# colors = [ "White",
+# "Blue",
+# "Red",
+# "Yellow",
+# "Orange",
+# "Pink",
+# "Black",
+# "Green",
+# "Brown"]
+#
+# nastassia.favorites.create!()  name: colors.sample
+# vega.colors.create!       name: colors.sample
+# sinovia.colors.create!    name: colors.sample
 
-nastassia.colors.create!  name: colors.sample
-vega.colors.create!       name: colors.sample
-sinovia.colors.create!    name: colors.sample
+
+vega.favorites.create!(
+  color:      "Green",
+  animal:     "Tiger",
+  season:     "Spring",
+  restaurant: "Brigs",
+  custom:     ""
+)
