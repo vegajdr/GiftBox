@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  get '/:username/profile' => 'profiles#friend_profile'
+
 
   resources :wishlists do
     resources :items
@@ -34,7 +36,6 @@ Rails.application.routes.draw do
 
   get '/users' => 'users#index'
 
-  get '/:username/profile' => 'profiles#friend_profile'
 
   get '/default_interests' => 'interests#default_interests'
 
