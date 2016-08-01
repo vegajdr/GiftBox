@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731193415) do
+ActiveRecord::Schema.define(version: 20160801195901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 20160731193415) do
     t.index ["user_id"], name: "index_ideaboxes_on_user_id", using: :btree
   end
 
+  create_table "ideas", force: :cascade do |t|
+    t.integer  "ideabox_id"
+    t.string   "text"
+    t.boolean  "done",       default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["ideabox_id"], name: "index_ideas_on_ideabox_id", using: :btree
+  end
+
   create_table "interests", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                 null: false
@@ -111,19 +120,13 @@ ActiveRecord::Schema.define(version: 20160731193415) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "purchased?",       default: false
+    t.boolean  "purchased?",  default: false
     t.integer  "wishlist_id"
-    t.integer  "user_interest_id"
-    t.integer  "user_holiday_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "product_url"
     t.string   "image_url"
-    t.integer  "ideabox_id"
     t.text     "description"
-    t.index ["ideabox_id"], name: "index_items_on_ideabox_id", using: :btree
-    t.index ["user_holiday_id"], name: "index_items_on_user_holiday_id", using: :btree
-    t.index ["user_interest_id"], name: "index_items_on_user_interest_id", using: :btree
     t.index ["wishlist_id"], name: "index_items_on_wishlist_id", using: :btree
   end
 
@@ -196,13 +199,11 @@ ActiveRecord::Schema.define(version: 20160731193415) do
   add_foreign_key "favorites", "users"
   add_foreign_key "friendships", "users"
   add_foreign_key "ideaboxes", "users"
+  add_foreign_key "ideas", "ideaboxes"
   add_foreign_key "item_holidays", "items"
   add_foreign_key "item_holidays", "user_holidays"
   add_foreign_key "item_interests", "items"
   add_foreign_key "item_interests", "user_interests"
-  add_foreign_key "items", "ideaboxes"
-  add_foreign_key "items", "user_holidays"
-  add_foreign_key "items", "user_interests"
   add_foreign_key "items", "wishlists"
   add_foreign_key "special_days", "users"
   add_foreign_key "user_holidays", "holidays"
