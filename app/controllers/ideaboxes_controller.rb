@@ -1,4 +1,5 @@
 class IdeaboxesController < ApplicationController
+  before_action :json_format
 
   def show
     @ideabox = Ideabox.where(user: current_user, friend: search_user).first
