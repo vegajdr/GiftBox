@@ -5,7 +5,12 @@ class ItemsController < ApplicationController
     unless wishlist
       unauthorized_response
     else
-      item = wishlist.items.create! name: params[:name]
+      item = wishlist.items.create! approved_params
+      # interest = Interest.find params[:interest]
+      # i = UserInterest.create! user: current_user, interest: interest
+      # item.user_interest_id = i.id
+      # item.save!
+      # binding.pry
       render json: item, status: :ok
     end
   end
@@ -34,7 +39,7 @@ class ItemsController < ApplicationController
   private
 
     def approved_params
-      params.permit :name
+      params.permit :name, :description, :product_url
     end
 
     def unauthorized_response

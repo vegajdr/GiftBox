@@ -45,8 +45,52 @@ nastassia.accepted_friendships.create! friend_id: sinovia.id
 sinovia.requested_friendships.create! friend_id: vega.id
 sinovia.accepted_friendships.create! friend_id: nastassia.id
 
+# Holidays
+["Christmas",
+"Hannukah",
+"Thanksgiving",
+"New Year's",
+"Valentine's Day",
+"Ramadan"].each do |holiday|
+  hol = Holiday.create! name: holiday, preset?: true
+end
+
+# Interests
+[ "Arts & Entertainment",
+"Autos & Vehicles",
+'Beauty',
+'Health & Fitness',
+'Books & Literature',
+'Computers & Electronics',
+'Design',
+'Food & Drink',
+'Games',
+'Hobbies & Leisure',
+'Home & Garden',
+'Internet & Technology',
+'Magic & Illusions',
+'Movies & Film',
+'Music',
+'Pets & Animals',
+'Programming & Web Development',
+'Science',
+'Sports',
+'Travel'].each do |interest|
+  int = Interest.create! name: interest, preset?: true
+end
+
+
+
 4.times do
-  u = User.create! first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", username: Faker::Name.first_name
+  u = User.create!(
+    first_name:   Faker::Name.first_name,
+    last_name:    Faker::Name.last_name,
+    email:        Faker::Internet.email,
+    password:     "password",
+    username:     Faker::Name.first_name,
+    dob_day:      "19",
+    dob_month:    "05",
+    dob_year:     "1945")
    Friendship.request u, nastassia
    Friendship.request u, vega
    Friendship.request u, sinovia
@@ -54,7 +98,15 @@ sinovia.accepted_friendships.create! friend_id: nastassia.id
 end
 
 4.times do
-  u = User.create! first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "password", username: Faker::Name.first_name
+  u = User.create!(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    password: "password",
+    username: Faker::Name.first_name,
+    dob_day:      "19",
+    dob_month:    "05",
+    dob_year:     "1945")
    Friendship.request u, nastassia
    Friendship.accept nastassia, u
    idea_n = Ideabox.create! user: nastassia, friend: u
@@ -94,17 +146,9 @@ User.all.each do |user|
     gift_cards.items.create! name: "Target"
 
     user.user_interests.create! interest: Interest.all.sample
-    user.user_holidays.create  holiday: Holiday.all.sample
+    user.user_holidays.create!  holiday: Holiday.all.sample
 end
 
-# Holidays
-["Christmas",
-"Hannukah",
-"Thanksgiving",
-"New Year's",
-"Valentine's Day"].each do |holiday|
-  hol = Holiday.create! name: holiday, preset?: true
-end
 
   nastassia.user_holidays.create holiday: Holiday.all.sample
   vega.user_holidays.create     holiday: Holiday.all.sample
@@ -112,29 +156,6 @@ end
 
 
 
-# Interests
-[ "Arts & Entertainment",
-"Autos & Vehicles",
-'Beauty',
-'Health & Fitness',
-'Books & Literature',
-'Computers & Electronics',
-'Design',
-'Food & Drink',
-'Games',
-'Hobbies & Leisure',
-'Home & Garden',
-'Internet & Technology',
-'Magic & Illusions',
-'Movies & Film',
-'Music',
-'Pets & Animals',
-'Programming & Web Development',
-'Science',
-'Sports',
-'Travel'].each do |interest|
-  int = Interest.create! name: interest, preset?: true
-end
 
 5.times do
   nastassia.user_interests.create! interest: Interest.all.sample

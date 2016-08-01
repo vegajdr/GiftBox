@@ -7,8 +7,6 @@ class WishlistsController < ApplicationController
   end
 
   def create
-    # TODO NEED TO WORK ON THIS LOGIC
-    # {"name"=>"Pajama Party", "item"=>{"name"=>"Pjs", "description"=>"I need pajamas", "holiday"=>"Sleep Day", "interest"=>"Interests"}
     wishlist = current_user.wishlists.create! name: params[:name]
     if params[:item]
       item = wishlist.items.create! item_params

@@ -9,4 +9,13 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def destroy
+    @favorite = current_user.favorites.first
+    favorites = FavoritesDestroyer.new @favorite, params
+    favorites.destroy
+    # if params[:colors]
+    #   @favorite.update color: ""
+    # end
+  end
+
 end

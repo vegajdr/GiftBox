@@ -5,7 +5,6 @@ class FavoritesUpdater
   end
 
   def create
-
     @user.favorites.create!(
       color:      @params[:colors],
       animal:     @params[:fav_animal],

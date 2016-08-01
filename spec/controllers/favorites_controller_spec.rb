@@ -28,4 +28,32 @@ RSpec.describe FavoritesController, type: :controller do
     expect(data.keys).to include "error"
   end
 
+  it "allows favorite attributes to be deleted by current user" do
+    favorite = create :favorite
+    user = favorite.user
+    sign_in user
+
+    old_favorite_count = user.favorites.count
+
+    response = delete :destroy, colors: "Red"
+
+    expect(user.favorites.count).to eq old_favorite_count
+    expect(user.favorites.first.color).to eq nil
+    expect(user.favorites.first.animal).to eq "Lion"
+  end
+
+  it "allows favorite animal attributes to be deleted by current user" do
+    favorite = create :favorite
+    user = favorite.user
+    sign_in user
+
+    old_favorite_count = user.favorites.count
+
+    response = delete :destroy, animal: "Anything"
+
+    expect(user.favorites.count).to eq old_favorite_count
+    expect(user.favorites.first.color).to eq "Red"
+    expect(user.favorites.first.animal).to eq nil
+  end
+
 end

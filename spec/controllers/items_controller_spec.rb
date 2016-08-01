@@ -44,4 +44,6 @@ RSpec.describe ItemsController, type: :controller do
     expect(response.status).to eq 200
   end
 
+  pending "tags items with existing user interest"
+
 end
