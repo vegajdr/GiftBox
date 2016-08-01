@@ -1,5 +1,4 @@
 class ProfilesController < ApplicationController
-  before_action :json_format
 
   def show
     @accepted_friend = current_user.friends.include? search_user
