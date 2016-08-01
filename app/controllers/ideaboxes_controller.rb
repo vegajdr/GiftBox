@@ -11,4 +11,8 @@ class IdeaboxesController < ApplicationController
     render json: @ideabox.ideas, status: :ok
   end
 
+  def destroy
+
+  end
+
 end

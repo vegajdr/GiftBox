@@ -4,16 +4,10 @@ Rails.application.routes.draw do
 
   post "/login" => 'sessions#login'
   post '/register' => 'sessions#register'
-
   get '/users' => 'users#index'
-
   get '/:username/profile' => 'profiles#friend_profile'
-
   get '/default_interests' => 'interests#default_interests'
-
   get '/:username/wishlists' => 'wishlists#friend_wishlists'
-
-
 
   resources :wishlists do
     resources :items
@@ -36,13 +30,12 @@ Rails.application.routes.draw do
 
   scope "/:username" do
     resource :profile do
-      resource :ideabox
+      resource :ideabox do
+        resources :ideas
+      end
     end
   end
 
   resource :invitation, only: [:create]
-
-
-
 
 end
