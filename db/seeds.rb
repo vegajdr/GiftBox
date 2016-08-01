@@ -44,6 +44,7 @@ vega.generate_token_for "Gentoo User"
 nastassia.accepted_friendships.create! friend_id: sinovia.id
 sinovia.requested_friendships.create! friend_id: vega.id
 sinovia.accepted_friendships.create! friend_id: nastassia.id
+vega.accepted_friendships.create! friend_id: nastassia.id
 
 # Holidays
 ["Christmas",
@@ -120,9 +121,9 @@ end
    idea_s = Ideabox.create! user: sinovia, friend: u
 
    [idea_n, idea_s, idea_v].each do |ideabox|
-       ideabox.items.create! name: "Ring"
-       ideabox.items.create! name: "Shirt"
-       ideabox.items.create! name: "Gift Card"
+       ideabox.ideas.create! text: "Ring"
+       ideabox.ideas.create! text: "Shirt"
+       ideabox.ideas.create! text: "Gift Card"
    end
 
   u.generate_token_for "Gentoo User"
