@@ -40,6 +40,7 @@ class User < ApplicationRecord
   has_many :invitations, foreign_key: "created_by"
 
   has_many :ideaboxes, dependent: :destroy
+  has_many :ideas, through: :ideaboxes
 
   has_many :favorites
 
