@@ -47,6 +47,7 @@ sinovia.requested_friendships.create! friend_id: vega.id
 Ideabox.generate sinovia, vega
 sinovia.accepted_friendships.create! friend_id: nastassia.id
 vega.accepted_friendships.create! friend_id: nastassia.id
+Ideabox.generate nastassia, vega
 
 # Holidays
 ["Christmas",

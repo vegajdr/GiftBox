@@ -14,8 +14,8 @@ class IdeaboxesController < ApplicationController
   def destroy
     ideabox = ideabox_search
     if ideabox
-      params[:cleared_ideas].each do |idea|
-        idea = ideabox.ideas.find idea[:id]
+      params[:cleared_ideas].each do |id|
+        idea = ideabox.ideas.find id
         idea.destroy
       end
       render json: { status: "Ideas has been deleted" }, status: :ok
