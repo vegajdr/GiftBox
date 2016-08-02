@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/:username/profile' => 'profiles#friend_profile'
   get '/default_interests' => 'interests#default_interests'
   get '/:username/wishlists' => 'wishlists#friend_wishlists'
+  get '/users/:username' => 'users#not_friend'
 
   resources :wishlists do
     resources :items
