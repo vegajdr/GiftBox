@@ -43,10 +43,10 @@ RSpec.describe ProfilesController, type: :controller do
     user = create :user
     sign_in user
 
-    response = post :create, holidays: { Christmas: true, Hannukah: true }
+    response = post :create, holidays: { Christmas: true, Hanukkah: true }
 
     expect(user.holidays.count).to eq 2
-    expect(user.holidays.last.name).to eq "Hannukah"
+    expect(user.holidays.last.name).to eq "Hanukkah"
   end
 
   it 'allows to add interets to current user profile' do

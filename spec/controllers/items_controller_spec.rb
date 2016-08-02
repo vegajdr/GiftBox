@@ -9,7 +9,7 @@ RSpec.describe ItemsController, type: :controller do
 
     old_items_count = user.items.count
 
-    response = post :create, name: "Great Toy", wishlist_id: wishlist.id
+    response = post :create, wishlist_id: wishlist.id, item: { name: "Great Toy" }
 
     expect(user.items.count).to eq old_items_count + 1
     expect(wishlist.items.first.name).to eq "Great Toy"
@@ -23,7 +23,7 @@ RSpec.describe ItemsController, type: :controller do
 
     old_items_count = user.items.count
 
-    response = patch :update, wishlist_id: wishlist.id, id: item.id, name: "Updated Name"
+    response = patch :update, wishlist_id: wishlist.id, id: item.id, item: { name: "Updated Name" }
 
     expect(user.items.count).to eq old_items_count
     expect(user.items.last.name).to eq "Updated Name"

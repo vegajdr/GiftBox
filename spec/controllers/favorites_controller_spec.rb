@@ -35,7 +35,7 @@ RSpec.describe FavoritesController, type: :controller do
 
     old_favorite_count = user.favorites.count
 
-    response = delete :destroy, colors: "Red"
+    response = delete :destroy, deleted_favorite: "color"
 
     expect(user.favorites.count).to eq old_favorite_count
     expect(user.favorites.first.color).to eq nil
@@ -49,7 +49,7 @@ RSpec.describe FavoritesController, type: :controller do
 
     old_favorite_count = user.favorites.count
 
-    response = delete :destroy, animal: "Anything"
+    response = delete :destroy, deleted_favorite: "animal"
 
     expect(user.favorites.count).to eq old_favorite_count
     expect(user.favorites.first.color).to eq "Red"

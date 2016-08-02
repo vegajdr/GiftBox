@@ -2,17 +2,11 @@ class ItemsController < ApplicationController
   before_action :json_format
 
   def create
-    binding.pry
     wishlist = current_user.wishlists.find params[:wishlist_id]
     unless wishlist
       unauthorized_response
     else
       item = wishlist.items.create! approved_params
-      # interest = Interest.find params[:interest]
-      # i = UserInterest.create! user: current_user, interest: interest
-      # item.user_interest_id = i.id
-      # item.save!
-      # binding.pry
       render json: item, status: :ok
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802144813) do
+ActiveRecord::Schema.define(version: 20160802185232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,9 +33,14 @@ ActiveRecord::Schema.define(version: 20160802144813) do
     t.string   "animal"
     t.string   "season"
     t.string   "restaurant"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "custom"
+    t.string   "color_string"
+    t.string   "animal_string"
+    t.string   "restaurant_string"
+    t.string   "season_string"
+    t.string   "custom_string"
     t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
   end
 
