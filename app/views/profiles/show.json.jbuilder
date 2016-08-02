@@ -14,7 +14,7 @@ json.user do
     json.array!     @user.interests
   end
   json.favorites do
-    json.array!     @user.colors
+    json.array!     @user.favorites
   end
   json.birthday do
     json.dob_month  @user.dob_month

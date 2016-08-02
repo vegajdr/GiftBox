@@ -30,8 +30,6 @@ class User < ApplicationRecord
   has_many :user_interests, dependent: :destroy
   has_many :interests, through: :user_interests, dependent: :destroy
 
-  has_many :colors, dependent: :destroy
-
   has_many :wishlists, dependent: :destroy
   has_many :items, through: :wishlists
 
@@ -59,14 +57,6 @@ class User < ApplicationRecord
       nonce:      SecureRandom.uuid,
       expires_at: 2.weeks.from_now
     )
-  end
-
-  def facebook_id
-    facebook_data["uid"] if facebook_data
-  end
-
-  def facebook_token
-    facebook_data["credentials"]["token"] if facebook_data
   end
 
 end
