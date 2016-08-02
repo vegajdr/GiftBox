@@ -7,7 +7,5 @@ class Item < ApplicationRecord
   has_many :item_holidays
   has_many :user_holidays, through: :item_holidays
 
-
   validates_presence_of :name
-
 end

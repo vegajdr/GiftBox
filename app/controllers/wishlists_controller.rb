@@ -34,7 +34,6 @@ class WishlistsController < ApplicationController
     end
   end
 
-
   private
 
     def approved_params

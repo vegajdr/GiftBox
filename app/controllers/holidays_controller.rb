@@ -5,7 +5,6 @@ class HolidaysController < ApplicationController
     render json: @holidays
   end
 
-
   def destroy
     holiday = current_user.holidays.find params[:id]
     unless holiday

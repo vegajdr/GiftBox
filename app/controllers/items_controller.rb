@@ -31,7 +31,6 @@ class ItemsController < ApplicationController
     end
   end
 
-
   private
 
     def approved_params

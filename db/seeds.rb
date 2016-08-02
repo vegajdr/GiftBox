@@ -167,21 +167,6 @@ end
   sinovia.user_interests.create! interest: Interest.all.sample
 end
 
-# Colors
-# colors = [ "White",
-# "Blue",
-# "Red",
-# "Yellow",
-# "Orange",
-# "Pink",
-# "Black",
-# "Green",
-# "Brown"]
-#
-# nastassia.favorites.create!()  name: colors.sample
-# vega.colors.create!       name: colors.sample
-# sinovia.colors.create!    name: colors.sample
-
 
 vega.favorites.create!(
   color:      "Green",
