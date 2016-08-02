@@ -26,7 +26,7 @@ RSpec.describe IdeaboxesController, type: :controller do
 
     old_ideas_count = ideabox.ideas.count
 
-    response = delete :destroy, id: idea.id, username: friend.username
+    response = delete :destroy, username: friend.username, cleared_ideas: [{ id: idea.id}] 
 
     expect(ideabox.ideas.count).to eq old_ideas_count - 1
   end
