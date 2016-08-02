@@ -42,8 +42,10 @@ class FriendshipsController < ApplicationController
       elsif params_options[:accept]
         Friendship.accept current_user, friend
         # An ideabox gets created upon friend acceptance:
-        Ideabox.create! user: current_user, friend: friend
-        
+        # Ideabox.where(user: current_user, friend: friend).first_or_create!
+        # Ideabox.where(user: friend, friend: current_user).first_or_create!
+        Ideabox.generate current_user, friend
+
         render json: { status: "You have accepted #{friend.username} as your friend"}
       elsif params_options[:unfriend] || params_options [:deny]
         Friendship.remove_friend current_user, friend

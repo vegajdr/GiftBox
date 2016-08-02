@@ -42,7 +42,9 @@ vega.generate_token_for "Gentoo User"
 
 
 nastassia.accepted_friendships.create! friend_id: sinovia.id
+Ideabox.generate nastassia, sinovia
 sinovia.requested_friendships.create! friend_id: vega.id
+Ideabox.generate sinovia, vega
 sinovia.accepted_friendships.create! friend_id: nastassia.id
 vega.accepted_friendships.create! friend_id: nastassia.id
 
