@@ -26,7 +26,7 @@ RSpec.describe IdeaboxesController, type: :controller do
 
     old_ideas_count = ideabox.ideas.count
 
-    response = delete :destroy, username: friend.username, cleared_ideas: [{ id: idea.id}]
+    response = delete :destroy, username: friend.username, cleared_ideas: [idea.id]
 
     expect(ideabox.ideas.count).to eq old_ideas_count - 1
   end
@@ -43,7 +43,7 @@ RSpec.describe IdeaboxesController, type: :controller do
 
     old_ideas_count = ideabox.ideas.count
 
-    response = delete :destroy, username: friend.username, cleared_ideas: [{ id: idea.id }, { id: idea1 }, { id: idea2 }]
+    response = delete :destroy, username: friend.username, cleared_ideas: [ idea.id, idea1.id, idea2.id ]
 
     expect(ideabox.ideas.count).to eq old_ideas_count - 3
   end

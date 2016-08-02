@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-
+  before_action :json_format
+  
   def create
     wishlist = current_user.wishlists.find params[:wishlist_id]
     unless wishlist
