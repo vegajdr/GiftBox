@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :json_format
-  
+
   def create
+    binding.pry
     wishlist = current_user.wishlists.find params[:wishlist_id]
     unless wishlist
       unauthorized_response
@@ -40,7 +41,7 @@ class ItemsController < ApplicationController
   private
 
     def approved_params
-      params.permit :name, :description, :product_url
+      params.require(:item).permit(:name, :description, :product_url)
     end
 
     def unauthorized_response
