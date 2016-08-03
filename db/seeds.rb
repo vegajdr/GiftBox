@@ -170,8 +170,24 @@ end
 
 vega.favorites.create!(
   color:      "Green",
-  animal:     "Tiger",
+  animal:     "Aardwolf",
   season:     "Spring",
   restaurant: "Brigs",
+  custom:     ""
+)
+
+nastassia.favorites.create!(
+  color:      "Orange",
+  animal:     "Cat",
+  season:     "Summer",
+  restaurant: "IHOP",
+  custom:     ""
+)
+
+sinovia.favorites.create!(
+  color:      "Red",
+  animal:     "Tiger",
+  season:     "Spring",
+  restaurant: "Mellow Mushroom",
   custom:     ""
 )
