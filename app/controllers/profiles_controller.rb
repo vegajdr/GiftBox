@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :json_format
-  skip_before_action :authenticate_user!, only: [:create]
+  # skip_before_action :authenticate_user!, only: [:create]
 
   def show
     @accepted_friend = current_user.friends.include? search_user
@@ -13,7 +13,6 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    binding.pry
     profile_creation = ProfileCreator.new current_user, params
     profile_creation.create
 

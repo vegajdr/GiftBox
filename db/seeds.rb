@@ -27,9 +27,9 @@ sinovia = User.create!(
   dob_year: "1988")
 
 vega = User.create!(
-  first_name: "Vega",
+  first_name: "Jorge",
   last_name: "Ramirez",
-  email: "vega@gentoo.com",
+  email: "vega@example.com",
   password: "password",
   username: "vega",
   dob_month: "04",
@@ -154,9 +154,9 @@ User.all.each do |user|
 end
 
 
-  nastassia.user_holidays.create holiday: Holiday.all.sample
+  # nastassia.user_holidays.create holiday: Holiday.all.sample
   vega.user_holidays.create     holiday: Holiday.all.sample
-  sinovia.user_holidays.create  holiday: Holiday.all.sample
+  # sinovia.user_holidays.create  holiday: Holiday.all.sample
 
 
 

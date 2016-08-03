@@ -33,14 +33,14 @@ class User < ApplicationRecord
   has_many :wishlists, dependent: :destroy
   has_many :items, through: :wishlists
 
-  has_many :special_days
+  has_many :special_days, dependent: :destroy
 
   has_many :invitations, foreign_key: "created_by"
 
   has_many :ideaboxes, dependent: :destroy
   has_many :ideas, through: :ideaboxes
 
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
 
   def self.with_token nonce
     token = AuthToken.active.find_by nonce: nonce

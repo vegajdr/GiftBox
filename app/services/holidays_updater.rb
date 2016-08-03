@@ -26,7 +26,7 @@ class HolidaysUpdater
     'Birthday'      => 'Birthday',
     'Valentines'    => "Valentine's Day",
     'NYE'           => "New Year's Eve",
-    'Thanksgivings' => "Thanksgiving",
+    'Thanksgiving' => "Thanksgiving",
     'MothersDay'    => "Mother's Day",
     'Halloween'     => 'Halloween',
     'StPatricks'    => "St. Patrick's Day",
