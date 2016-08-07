@@ -1,5 +1,4 @@
 class InterestUpdater
-
   def initialize user, params
     @user = user
     @params = params
@@ -38,5 +37,4 @@ class InterestUpdater
       'sports'    =>  'Sports',
       'travel'    =>  'Travel' }
   end
-
 end

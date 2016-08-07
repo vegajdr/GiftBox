@@ -33,11 +33,11 @@ class ItemsController < ApplicationController
 
   private
 
-    def approved_params
-      params.require(:item).permit(:name, :description, :product_url)
-    end
+  def approved_params
+    params.require(:item).permit(:name, :description, :product_url)
+  end
 
-    def unauthorized_response
-      render json: { error: "You're not authorized to update this record" }, status: :forbidden
-    end
+  def unauthorized_response
+    render json: { error: "You're not authorized to update this record" }, status: :forbidden
+  end
 end

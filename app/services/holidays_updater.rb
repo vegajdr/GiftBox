@@ -1,5 +1,4 @@
 class HolidaysUpdater
-
   def initialize user, params
     @user = user
     @params = params

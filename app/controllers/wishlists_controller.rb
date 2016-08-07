@@ -1,5 +1,4 @@
 class WishlistsController < ApplicationController
-
   before_action :json_format
 
   def index
@@ -36,12 +35,11 @@ class WishlistsController < ApplicationController
 
   private
 
-    def approved_params
-      params.permit [:name]
-    end
+  def approved_params
+    params.permit [:name]
+  end
 
-    def item_params
-      params.require(:item).permit :name, :description
-    end
-
+  def item_params
+    params.require(:item).permit :name, :description
+  end
 end

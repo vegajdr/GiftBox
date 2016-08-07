@@ -1,5 +1,4 @@
 class InterestsController < ApplicationController
-
   def index
     @interests = current_user.interests
     render json: @interests
@@ -29,7 +28,7 @@ class InterestsController < ApplicationController
 
   private
 
-    def approved_params
-      params.permit :name
-    end
+  def approved_params
+    params.permit :name
+  end
 end

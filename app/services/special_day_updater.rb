@@ -1,5 +1,4 @@
 class SpecialDayUpdater
-
   def initialize user, params
     @user = user
     @params = params
@@ -13,5 +12,4 @@ class SpecialDayUpdater
       name:         @params['sd_name']
     )
   end
-
 end

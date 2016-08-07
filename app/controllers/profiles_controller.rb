@@ -37,9 +37,7 @@ class ProfilesController < ApplicationController
 
   private
 
-    def allowed_params
-      params.permit(:first_name, :last_name, :dob_day, :dob_month, :dob_year)
-    end
-
-
+  def allowed_params
+    params.permit(:first_name, :last_name, :dob_day, :dob_month, :dob_year)
+  end
 end

@@ -1,5 +1,4 @@
 class FavoritesUpdater
-
   def initialize user, params
     @user = user
     @params = params
@@ -14,5 +13,4 @@ class FavoritesUpdater
       custom:     @params[:fav_custom]
     )
   end
-
 end

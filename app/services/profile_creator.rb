@@ -1,5 +1,4 @@
 class ProfileCreator
-
   def initialize user, params
     @user = user
     @params = params
@@ -31,5 +30,4 @@ class ProfileCreator
       favorites.create
     end
   end
-
 end

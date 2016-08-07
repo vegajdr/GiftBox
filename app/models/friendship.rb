@@ -1,6 +1,6 @@
 class Friendship < ApplicationRecord
   belongs_to :user
-  belongs_to :friend, class_name: "User"
+  belongs_to :friend, class_name: 'User'
 
   def self.request user, friend
     unless Friendship.where(user: user, friend: friend).exists?

@@ -26,28 +26,28 @@ class FriendshipsController < ApplicationController
 
   private
 
-    def approved_params
-      params.permit :requested_friend, :accepted_friend
+  def approved_params
+    params.permit :requested_friend, :accepted_friend
+  end
+
+  def friendship_status params_options
+    friend = User.find_by username: params_options.values.first
+    unless friend
+      return user_not_found_response
     end
 
-    def friendship_status params_options
-      friend = User.find_by username: params_options.values.first
-      unless friend
-        return user_not_found_response
-      end
+    if params_options[:request]
+      Friendship.request current_user, friend
+      render json: { status: "You have requested #{friend.username} as your friend" }
+    elsif params_options[:accept]
+      Friendship.accept current_user, friend
+      # An ideabox gets created upon friend acceptance:
+      Ideabox.generate current_user, friend
 
-      if params_options[:request]
-        Friendship.request current_user, friend
-        render json: { status: "You have requested #{friend.username} as your friend"}
-      elsif params_options[:accept]
-        Friendship.accept current_user, friend
-        # An ideabox gets created upon friend acceptance:
-        Ideabox.generate current_user, friend
-
-        render json: { status: "You have accepted #{friend.username} as your friend"}
-      elsif params_options[:unfriend] || params_options [:deny]
-        Friendship.remove_friend current_user, friend
-        render json: { status: "You have unfriended #{friend.username}" }
-      end
+      render json: { status: "You have accepted #{friend.username} as your friend" }
+    elsif params_options[:unfriend] || params_options [:deny]
+      Friendship.remove_friend current_user, friend
+      render json: { status: "You have unfriended #{friend.username}" }
     end
+  end
 end
