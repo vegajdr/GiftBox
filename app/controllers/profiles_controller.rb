@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
     if @user || @accepted_friend
       render :show, status: :ok
     else
-      render json: { error: "You're not authorized to access this user's profile"}
+      render json: { error: "You're not authorized to access this user's profile" }
     end
   end
 
@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
     profile_creation = ProfileCreator.new current_user, params
     profile_creation.create
 
-    render json: { status: "Profile has been updated" }
+    render json: { status: 'Profile has been updated' }
   end
 
   def update
@@ -31,7 +31,7 @@ class ProfilesController < ApplicationController
     elsif @user == current_user
       render :show, status: :ok
     else
-      render json: { error: "You're not authorized to access this user's profile"}
+      render json: { error: "You're not authorized to access this user's profile" }
     end
   end
 

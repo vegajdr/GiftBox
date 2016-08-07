@@ -8,9 +8,9 @@ class WishlistsController < ApplicationController
 
   def create
     wishlist = current_user.wishlists.create! name: params[:name]
-    if params[:item]
-      item = wishlist.items.create! item_params
-    end
+
+    wishlist.items.create! item_params if params[:item]
+
     render json: wishlist, status: :ok
   end
 
@@ -27,10 +27,10 @@ class WishlistsController < ApplicationController
   def friend_wishlists
     @user = search_user
     @wishlists = @user.wishlists
-    if @user && (current_user.friends.include?(@user))
+    if @user && current_user.friends.include?(@user)
       render :index, status: :ok
     else
-      render json: { error: "You're not authorized to access this user's profile"}
+      render json: { error: "You're not authorized to access this user's profile" }
     end
   end
 

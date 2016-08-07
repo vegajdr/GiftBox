@@ -3,8 +3,8 @@ class FriendshipsController < ApplicationController
 
   def show
     @user = current_user
-    @pending = @user.pending_friendships.map { |f| f.friend }
-    @requested = @user.requested_friendships.map { |f| f.friend }
+    @pending = @user.pending_friendships.map(&:friend)
+    @requested = @user.requested_friendships.map(&:friend)
   end
 
   def create
@@ -23,7 +23,6 @@ class FriendshipsController < ApplicationController
   def deny
     friendship_status deny: params[:denied_friend]
   end
-
 
   private
 
@@ -48,9 +47,7 @@ class FriendshipsController < ApplicationController
         render json: { status: "You have accepted #{friend.username} as your friend"}
       elsif params_options[:unfriend] || params_options [:deny]
         Friendship.remove_friend current_user, friend
-        render json: { status: "You have unfriended #{friend.username}"}
+        render json: { status: "You have unfriended #{friend.username}" }
       end
-
     end
-
 end

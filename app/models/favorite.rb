@@ -2,7 +2,7 @@ class Favorite < ApplicationRecord
   belongs_to :user
 
   after_create do
-    self.update(
+    update(
       color_string: "color",
       animal_string: "animal",
       restaurant_string: "restaurant",

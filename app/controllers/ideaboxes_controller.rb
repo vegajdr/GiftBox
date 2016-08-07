@@ -18,9 +18,9 @@ class IdeaboxesController < ApplicationController
         idea = ideabox.ideas.find id
         idea.destroy
       end
-      render json: { status: "Ideas has been deleted" }, status: :ok
+      render json: { status: 'Ideas has been deleted' }, status: :ok
     else
-      render json: { error: "You are not authorized to delete this record"}, status: :forbidden
+      render json: { error: 'You are not authorized to delete this record' }, status: :forbidden
     end
   end
 
@@ -29,5 +29,4 @@ class IdeaboxesController < ApplicationController
     def ideabox_search
       Ideabox.where(user: current_user, friend: search_user).first
     end
-
 end

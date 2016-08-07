@@ -1,7 +1,8 @@
 class FavoritesDestroyer
 
   def initialize favorite, params
-    @favorite, @params = favorite, params
+    @favorite = favorite
+    @params = params
   end
 
   def destroy

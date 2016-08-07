@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       last_name:    params[:last_name],
       avatar:       params[:picture]
     )
-    @token = @user.generate_token_for "Gentoo User"
+    @token = @user.generate_token_for 'Gentoo User'
   end
 
   def login
@@ -20,8 +20,7 @@ class SessionsController < ApplicationController
     unless @user && (@user.valid_password? params[:password])
       user_not_found_response
     else
-      @token = @user.auth_tokens.find_by name: "Gentoo User"
+      @token = @user.auth_tokens.find_by name: 'Gentoo User'
     end
   end
-
 end

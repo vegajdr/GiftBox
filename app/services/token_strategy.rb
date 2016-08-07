@@ -1,15 +1,15 @@
 class TokenStrategy < Devise::Strategies::Base
   def valid?
-    request.env["HTTP_AUTHORIZATION"].present?
+    request.env['HTTP_AUTHORIZATION'].present?
   end
 
   def authenticate!
-    token = request.env["HTTP_AUTHORIZATION"]
+    token = request.env['HTTP_AUTHORIZATION']
     if user = User.with_token(token)
       puts "~~~~~>>>>> Found #{user.email} with token #{token} <<<<~~~~~~~~"
       success! user
     else
-      fail! "No user matches that token"
+      fail! 'No user matches that token'
     end
   end
 end

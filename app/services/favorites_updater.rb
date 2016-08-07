@@ -1,7 +1,8 @@
 class FavoritesUpdater
 
   def initialize user, params
-    @user, @params = user, params
+    @user = user
+    @params = params
   end
 
   def create
@@ -10,7 +11,7 @@ class FavoritesUpdater
       animal:     @params[:fav_animal],
       season:     @params[:fav_season],
       restaurant: @params[:fav_restaurant],
-      custom:     @params[:fav_custom],
+      custom:     @params[:fav_custom]
     )
   end
 

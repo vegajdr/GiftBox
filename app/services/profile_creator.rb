@@ -1,7 +1,8 @@
 class ProfileCreator
 
   def initialize user, params
-    @user, @params = user, params
+    @user = user
+    @params = params
   end
 
   def create

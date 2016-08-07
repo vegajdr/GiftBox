@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   before_action :authenticate_user!
 
   def json_format
@@ -7,11 +6,10 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_found_response
-    render json: { error: "User not found"}
+    render json: { error: 'User not found' }
   end
 
   def search_user
     User.find_by username: params[:username]
   end
-
 end

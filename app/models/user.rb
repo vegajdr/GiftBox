@@ -58,5 +58,4 @@ class User < ApplicationRecord
       expires_at: 2.weeks.from_now
     )
   end
-
 end
