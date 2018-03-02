@@ -32,9 +32,7 @@ class FriendshipsController < ApplicationController
 
   def friendship_status params_options
     friend = User.find_by username: params_options.values.first
-    unless friend
-      return user_not_found_response
-    end
+    return user_not_found_response unless friend
 
     if params_options[:request]
       Friendship.request current_user, friend

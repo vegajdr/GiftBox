@@ -8,6 +8,7 @@ class FavoritesController < ApplicationController
     end
   end
 
+
   def destroy
     @favorite = current_user.favorites.first
     favorites = FavoritesDestroyer.new @favorite, params

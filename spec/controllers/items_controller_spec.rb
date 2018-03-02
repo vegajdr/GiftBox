@@ -5,6 +5,7 @@ RSpec.describe ItemsController, type: :controller do
   it "allows user to create item under existing wishlist" do
     wishlist = create :wishlist
     user = wishlist.user
+    binding.pry
     sign_in user
 
     old_items_count = user.items.count

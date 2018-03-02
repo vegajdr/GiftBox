@@ -42,7 +42,7 @@ RSpec.describe FavoritesController, type: :controller do
     expect(user.favorites.first.animal).to eq "Lion"
   end
 
-  it "allows favorite animal attributes to be deleted by current user" do
+  it 'allows favorite animal attributes to be deleted by current user' do
     favorite = create :favorite
     user = favorite.user
     sign_in user

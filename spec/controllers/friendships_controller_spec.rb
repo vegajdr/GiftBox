@@ -16,7 +16,7 @@ RSpec.describe FriendshipsController, type: :controller do
     expect(friend.requested_friendships.last.status).to eq "requested"
   end
 
-  it "allows users to accept friend requests" do
+  it 'allows users to accept friend requests' do
     user = create :user
     sign_in user
     friend = create :user

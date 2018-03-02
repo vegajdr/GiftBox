@@ -17,10 +17,11 @@ class SessionsController < ApplicationController
 
   def login
     @user = User.find_by email: params[:email]
-    unless @user && (@user.valid_password? params[:password])
-      user_not_found_response
-    else
+
+    if @user && @user.valid_password?(params[:password])
       @token = @user.auth_tokens.find_by name: 'Gentoo User'
+    else
+      user_not_found_response
     end
   end
 end
