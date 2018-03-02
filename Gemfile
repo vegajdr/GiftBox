@@ -10,6 +10,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'vega', path: '/Users/vega/projects/personal/thor/test-gem/vega'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
@@ -25,7 +27,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'faker'
 gem 'rollbar'
 gem 'fog'
-gem 'rmagick'
 gem 'carrierwave'
 
 # Use Redis adapter to run Action Cable in production
